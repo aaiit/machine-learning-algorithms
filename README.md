@@ -1,1 +1,2 @@
-# multivariate-linear-regression
+# g++ main.cpp -o exe -llapack -lblas -larmadillo
+
