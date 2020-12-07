@@ -1,7 +1,7 @@
 #include <armadillo>
 #include <iostream>
 #include <stdio.h>
-// Source : http://nasacj.net/?p=189
+
 using namespace std;
 using namespace arma;
 
@@ -24,12 +24,17 @@ void gradientDescent(const mat&    X,
 	int iter;
 	int m ;
 	m = y.n_rows;
+
 	//vec J_history = arma::zeros<vec>(num_iters) ;
 	for (iter = 0; iter < num_iters; iter++)
 	{
 		delta = arma::trans(X)*(X*theta-y)/m ;
 		theta = theta-alpha*delta ;
 		//J_history(iter) = computeCost(X, y, theta)(0) ;
+
+		mat J = computeCost(X, y, theta);
+		J.print("J:");
+	
 	}
 	//J_history.print("J_history");
 }
@@ -37,28 +42,33 @@ void gradientDescent(const mat&    X,
 int main()
 {
 	mat data;
-	data.load("ex1data1.txt");
-	//data.print("ex1data1:");
-	mat X = data.col(0);
-	mat y = data.col(1);
-	//X.print("X:");
-	//y.print("y:");
+	
+	mat X(100, 1);      
+    for(int i=0;i<100;i++)
+    {
+        X[i]=i;
+    }
+
+    mat y(100, 1);
+    for(int i=0;i<100;i++)
+    {
+        y[i]= 40*(i)+50;
+    }
+
 	
 	int m = X.n_elem;
-	cout << "m = " << m << endl;
 	
+	mat theta = arma::zeros<vec>(2);
 	vec X_One(m);
 	X_One.ones();
 	X.insert_cols(0, X_One);
-	//X.print("X:");
-	//cout << "after insert_cols:" << X.n_elem << endl;
 	
-	mat theta = arma::zeros<vec>(2);
-	int iterations = 1500 ;
-	double alpha = 0.01 ;
+	// X.print("X:");
+	// y.print("y:");
+
+	int iterations = 150000 ;
+	double alpha = 0.00001 ;
 	
-	mat J = computeCost(X, y, theta);
-	J.print("J:");
 	
 	gradientDescent(X, y, alpha, iterations, theta) ;
 	printf("Theta found by gradient descent: \n") ;
