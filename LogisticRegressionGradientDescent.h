@@ -18,7 +18,7 @@ mat computeCost(const mat& X, const mat& y, const mat& theta)
 	mat J(1,1);J[0]=0;
     mat z=X*theta;
     for(int i=0;i<m;i++){
-    J[0] =J[0]+ log(1 + exp(-y[i] * z[i]));
+    J[0] =J[0]+ log(1 + exp(-y[i] * sum(z[i]))); 
     } 
     return J / m;
 }
@@ -53,15 +53,14 @@ void gradientDescent(const mat&    X,
 	gradient.ones();
 
 	vector<double> J_history;
+	int it=0;
 	do
 	{
+		it++;
 		old_gradient=gradient;
 
-		// 
-		// gradient = sum(dot(trans(X), sigmoid(X*theta)-y));
 		for(int i=0;i<n;i++) 
 		{
-			// cout<<xt.n_rows<<"#"<<xt.n_cols<<endl;
 			gradient[i]= sum(dot(sigmoid(X*theta)-y,X.col(i)));
 		}
 
@@ -73,11 +72,12 @@ void gradientDescent(const mat&    X,
 		J_history.push_back(J[0]);
 
 		dg=sum(gradient-old_gradient);
-	
+		if(it%100==0)
+		{	cout<<it<<endl;
+			ofstream output_file("loss_history:"+file_name);
+		    	for (const auto &e : J_history) output_file << e << " ";}
 	}while(abs(dg[0])>0.0000001);
 
-	ofstream output_file("loss_history:"+file_name);
-    for (const auto &e : J_history) output_file << e << " ";
 }
 
 
