@@ -39,40 +39,40 @@ void gradientDescent(const mat&    X,
 	//J_history.print("J_history");
 }
 
-int main()
-{
-	mat data;
+// int main()
+// {
+// 	mat data;
 	
-	mat X(100, 1);      
-    for(int i=0;i<100;i++)
-    {
-        X[i]=i;
-    }
+// 	mat X(100, 1);      
+//     for(int i=0;i<100;i++)
+//     {
+//         X[i]=i;
+//     }
 
-    mat y(100, 1);
-    for(int i=0;i<100;i++)
-    {
-        y[i]= 40*(i)+50;
-    }
+//     mat y(100, 1);
+//     for(int i=0;i<100;i++)
+//     {
+//         y[i]= 40*(i)+50;
+//     }
 
 	
-	int m = X.n_elem;
+// 	int m = X.n_elem;
 	
-	mat theta = arma::zeros<vec>(2);
-	vec X_One(m);
-	X_One.ones();
-	X.insert_cols(0, X_One);
+// 	mat theta = arma::zeros<vec>(2);
+// 	vec X_One(m);
+// 	X_One.ones();
+// 	X.insert_cols(0, X_One);
 	
-	// X.print("X:");
-	// y.print("y:");
+// 	// X.print("X:");
+// 	// y.print("y:");
 
-	int iterations = 150000 ;
-	double alpha = 0.00001 ;
+// 	int iterations = 150000 ;
+// 	double alpha = 0.00001 ;
 	
 	
-	gradientDescent(X, y, alpha, iterations, theta) ;
-	printf("Theta found by gradient descent: \n") ;
-	printf("%f %f \n", theta(0), theta(1)) ;
+// 	gradientDescent(X, y, alpha, iterations, theta) ;
+// 	printf("Theta found by gradient descent: \n") ;
+// 	printf("%f %f \n", theta(0), theta(1)) ;
 	
-	return 0;
-}
+// 	return 0;
+// }
