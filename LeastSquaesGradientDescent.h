@@ -15,7 +15,8 @@ mat computeCost(const mat& X, const mat& y, const mat& theta)
 }
 
 double armijo(const mat& X, const mat& y, const mat& theta, mat gradient) {
-	// Armijo Hyperparameters.
+	// Armijo Hyperparameters
+	
     static double eps = .001;
     static double eta = 10;
 
@@ -35,15 +36,16 @@ void gradientDescent(const mat&    X,
                      string file_name)
 {
 	int iter;
-	int m;
+	int m,n;
 	m = y.n_rows;
-	mat gradient(m,1),old_gradient(m,1),dg;
+	n = theta.n_elem;
+	mat gradient(n,1),old_gradient(n,1),dg;
 	gradient.ones();
 
 	vector<double> J_history;
 	do
 	{
-		// old_gradient=gradient;
+		old_gradient=gradient;
 		gradient = 2*arma::trans(X)*(X*theta-y)/m ;
 		double  alpha = armijo(X,y,theta,gradient);
 		theta = theta-alpha*gradient ;
@@ -51,13 +53,11 @@ void gradientDescent(const mat&    X,
 		J.print("J: ");
 		J_history.push_back(J[0]);
 
-		cout<<"G"<<gradient.n_elem<<"OldG"<<old_gradient.n elem<<endl;
 		dg=sum(gradient-old_gradient);
-		// dg.print("")
 	
-	}while(abs(dg[0])>0.0001);
+	}while(abs(dg[0])>0.0000001);
 
-	ofstream output_file(file_name+"_loss_history");
+	ofstream output_file("loss_history:"+file_name);
     for (const auto &e : J_history) output_file << e << " ";
 }
 
