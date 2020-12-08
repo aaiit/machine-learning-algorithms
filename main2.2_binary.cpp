@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "rapidcsv.h"
-#include "GradientDescent.h"
+#include "algorithms/GradientDescent.h"
 
 using namespace std;
 

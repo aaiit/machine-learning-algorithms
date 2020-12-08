@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "rapidcsv.h"
-#include "GradientDescentStochastic.h"
+#include "algorithms/GradientDescentStochastic.h"
 
 using namespace std;
 

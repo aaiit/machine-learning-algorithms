@@ -25,6 +25,8 @@ void pocket(const mat X,const mat y,mat& theta,string file_name)
 
 	vector<double> J_history;
 
+
+	
 	// do
 	// {
 	// 	for(int i=1;i<=n;i++)

@@ -1,7 +1,7 @@
 // Algorithm : Perceptron learning
 
 #include <bits/stdc++.h>
-#include "Perceptron.h"
+#include "algorithms/Perceptron.h"
 #include "rapidcsv.h"
 using namespace std;
 
@@ -26,8 +26,8 @@ int main(int argc, char const *argv[])
   		y[i]=c3[i];
   	}
 
-  	// X.print("X :");
-  	// y.print("y :");
+  	X.print("X :");
+  	y.print("y :");
 	perceptron(X,y,theta,"perceptron_"+s);
 	return 0;
 }
