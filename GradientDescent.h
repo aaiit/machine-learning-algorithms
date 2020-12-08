@@ -60,7 +60,6 @@ void gradientDescent(const mat&    X,
 	
 	}while(abs(dg[0])>0.0000001);
 
-	ofstream output_file("loss_history:"+file_name);
-    for (const auto &e : J_history) output_file << e << " ";
+	theta.save("W:"+file_name);
 }
 
