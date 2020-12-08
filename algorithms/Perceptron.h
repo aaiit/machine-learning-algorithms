@@ -32,7 +32,7 @@ void perceptron(const mat X,const mat y,mat& theta,string file_name)
 			mat p = theta.t()*X(i);
 			if(p[0]*y[i] < 0)
 			{
-				theta = theta +y[i]*X[i];
+				theta = theta +y[i]*X(i);
 				t++;
 			}
 		}

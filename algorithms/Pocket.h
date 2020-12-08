@@ -1,6 +1,8 @@
 #include <armadillo>
 #include <iostream>
 
+#define pp(x) cout<<#x<<" : "<<x.n_rows<<"#"<<x.n_cols<<endl;
+
 using namespace std;
 using namespace arma;
 
@@ -19,16 +21,42 @@ mat Ls(mat X,mat y,mat theta)
 
 void pocket(const mat X,const mat y,mat& theta,string file_name)
 {
-	theta.zeros();
+	theta.randu();
 	int t=1 , n = X.n_rows;
-	mat l ;
+	mat l1,l2 ;
 
 	vector<double> J_history;
 
+	int Tmax = 100;
 
-	
-	// TODO
-	
+	for(int t=0;t<=Tmax;t++)
+	{
+		mat _theta = theta;
+
+		int iw = Tmax%(theta.n_elem);
+
+		for(int i=0;i<n;i++)
+		{
+			// pp(_theta(iw))pp(X(i,iw))
+
+			double p = _theta(iw)*X(i,iw);
+			if(p*y[i] < 0)
+			{
+				_theta(iw) = _theta(iw) +y[i]*X(i);
+				t++;
+			}
+
+		}
+
+		l1 = Ls(X,y,theta);
+		l2 = Ls(X,y,_theta);
+
+		if(l2[0] < l1[0]) theta= _theta;
+
+		l1.print("Pocket -> Ls "+to_string(t)+":");
+		J_history.push_back(l1[l1[0]]);
+
+	}
 
 	ofstream coutput_file("costs/"+file_name);
 	for (const auto &e : J_history) coutput_file << e << " ";

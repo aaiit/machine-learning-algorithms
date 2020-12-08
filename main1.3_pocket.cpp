@@ -28,6 +28,6 @@ int main(int argc, char const *argv[])
 
 	// X.print("X :");
 	// y.print("y :");
-	pocket(X,y,theta,"adaline"+s);
+	pocket(X,y,theta,"pocket"+s);
 	return 0;
 }
