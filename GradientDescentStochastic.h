@@ -64,6 +64,7 @@ void stochasticgradientDescent(const mat&    X,
 	ofstream output_file("costs/"+file_name);
     for (const auto &e : J_history) output_file << e << " ";
 
-	theta.save("W/"+file_name);
+	ofstream Woutput_file("W/"+file_name);
+	for (const auto &e : theta) Woutput_file << e << " ";
 }
 

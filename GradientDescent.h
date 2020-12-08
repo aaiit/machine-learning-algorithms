@@ -1,6 +1,5 @@
 #include <armadillo>
 #include <iostream>
-#include <stdio.h>
 
 using namespace std;
 using namespace arma;
@@ -53,17 +52,20 @@ void gradientDescent(const mat&    X,
 		it++;
 		if(it%1000==0)
 		{	
-			ofstream output_file("costs/"+file_name);
-		    for (const auto &e : J_history) output_file << e << " ";
+			ofstream coutput_file("costs/"+file_name);
+		    for (const auto &e : J_history) coutput_file << e << " ";
 		}
 
 		dg=sum(gradient-old_gradient);
 	
 	}while(abs(dg[0])>0.0000001);
 
-	ofstream output_file("costs/"+file_name);
-	for (const auto &e : J_history) output_file << e << " ";
+	ofstream coutput_file("costs/"+file_name);
+	for (const auto &e : J_history) coutput_file << e << " ";
 		
-	theta.save("W/"+file_name);
+
+	ofstream Woutput_file("W/"+file_name);
+	for (const auto &e : theta) Woutput_file << e << " ";
+			
 }
 

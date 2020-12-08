@@ -1,0 +1,1 @@
+# Compile command : g++ main<>.cpp -o bin/exe<> -llapack -lblas -larmadillo
