@@ -23,21 +23,27 @@ mat LeastSquaesGradient(const mat& X, const mat& y, const mat& theta)
 	return 2*arma::trans(X)*(X*theta-y)/m;
 }
 
-mat phi(mat x,int np)
+mat phi(vec x,int np)
 {
-	mat X(np+1,x.n_rows);
-	X(0).ones();
+	mat X(x.n_rows , np+1);
+	X.col(0).ones();
+
+
 	for(int i=1;i<=np;i++)
 	{
-		X(i)=pow(x,i);
+		mat xx=X.col(i-1);
+		// cout<<x.n_rows<<"#x#"<<x.n_cols<<endl;
+		// cout<<xx.n_rows<<"#X column#"<<xx.n_cols<<endl;
+		// X.col(i)=dot(xx,x);
+		for(int j=0;j<x.n_rows;j++)X.col(i)[j]=x[j]*X.col(i-1)[j];
 	}
-	return trans(X);
+	return X;
 }
 int main(int argc, char const *argv[])
 {
 	int np ;
 	cout<<"NP : "<<endl;
-	cout<<np;
+	cin>>np;
 
 	rapidcsv::Document doc("data/pressure.csv");
 
@@ -45,9 +51,8 @@ int main(int argc, char const *argv[])
   	vector<float> c2 = doc.GetColumn<float>("pressure");
 
   	int m= c1.size();
-	int n=1;
 	
-	mat X(m, np),x(m);  
+	mat X(m, np),x(m,1);  
 	for(int i=0;i<m;i++)
 	{
 		x[i]=c1[i];  
@@ -59,12 +64,12 @@ int main(int argc, char const *argv[])
 
 	for(int i=0;i<m;i++)y[i]=c2[i]; 
 
-	mat theta = arma::zeros<vec>(n+1);
+	mat theta = arma::zeros<vec>(np+1);
 
 
-	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "pressure") ;
+	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "pressure_p"+to_string(np)) ;
 
-	theta.print("Theta found by gradient descent:"); //  -1.0510e+02 1.3422e+00
+	theta.print("Theta found by gradient descent:"); 
 
 
 	return 0;

@@ -1,6 +1,5 @@
-ex1.cpp
-ex2.cpp
-ex3.cpp
 notes.txt
 *.py
 exe*
+costs/*
+W/*
