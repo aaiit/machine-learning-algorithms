@@ -4,3 +4,4 @@ exe*
 costs/*
 W/*
 main.cpp
+bin/*
