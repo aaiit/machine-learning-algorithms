@@ -54,12 +54,12 @@ void gradientDescent(const mat&    X,
 		it++;
 		if(it%1000==0)
 		{	
-			ofstream output_file("loss_history:"+file_name);
+			ofstream output_file("costs/"+file_name);
 		    for (const auto &e : J_history) output_file << e << " ";
 		}
 	
 	}while(abs(dg[0])>0.0000001);
 
-	theta.save("W:"+file_name);
+	theta.save("W/"+file_name);
 }
 
