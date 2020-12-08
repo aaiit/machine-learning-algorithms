@@ -8,21 +8,6 @@
 
 using namespace std;
 
-mat LeastSquaesCost(const mat& X, const mat& y, const mat& theta)
-{
-	mat J;
-	int m;
-	m = y.n_rows;
-	J = sum((pow(((X*theta)-y), 2))/m) ;
-	return J;
-}
-
-mat LeastSquaesCostGradient(const mat& X, const mat& y, const mat& theta)
-{
-	int m= X.n_rows;
-	return 2*arma::trans(X)*(X*theta-y)/m;
-}
-
 
 int main(int argc, char const *argv[])
 {

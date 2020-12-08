@@ -8,34 +8,6 @@
 
 using namespace std;
 
-mat LeastSquaesCost(const mat& X, const mat& y, const mat& theta)
-{
-	mat J;
-	int m;
-	m = y.n_rows;
-	J = sum((pow(((X*theta)-y), 2))/m) ;
-	return J;
-}
-
-mat LeastSquaesGradient(const mat& X, const mat& y, const mat& theta)
-{
-	int m= X.n_rows;
-	return 2*arma::trans(X)*(X*theta-y)/m;
-}
-
-vector<pair<int,int>> PQ(int deg)
-{
-	vector<pair<int,int>> v;
-	for(int p=0;p<=deg;p++)
-	{
-		for(int q=0; p+q<= deg;q++ )
-		{
-			v.push_back(make_pair(p,q));
-		}
-	}
-	return v;
-}
-
 mat transformation(mat x,int np)
 {
 	vector<pair<int,int>> pq = PQ(np);

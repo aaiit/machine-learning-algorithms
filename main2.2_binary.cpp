@@ -7,39 +7,6 @@
 
 using namespace std;
 
-mat sigmoid(mat z)
-{
-	return 1/(1+exp(-z));
-}
-
-mat logisticCost(const mat& X, const mat& y, const mat& theta)
-{
-	int m;
-	m = y.n_rows;
-
-	mat J(1,1);
-    mat z=X*theta;
-    for(int i=0;i<m;i++){
-    J[0] =J[0]+ log(1 + exp(-y[i] * sum(z[i]))); 
-    } 
-    return J / m;
-}
-
-mat logisticGradient(const mat& X, const mat& y, const mat& theta)
-{
-	int m= X.n_rows;
-	int n= X.n_cols;
-	mat gradient(n,1);
-
-	for(int i=0;i<n;i++) 
-		{
-			gradient[i]= sum(dot(sigmoid(X*theta)-y,X.col(i)));
-		}
-
-	return gradient;
-}
-
-
 
 int main(int argc, char const *argv[])
 {

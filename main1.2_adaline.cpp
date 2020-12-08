@@ -1,1 +1,1 @@
-// Algorithm : adalin
+// Algorithm : adaline
