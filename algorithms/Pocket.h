@@ -25,7 +25,8 @@ void pocket(const mat X,const mat y,mat& theta,string file_name)
 	int t=1 , n = X.n_rows;
 	mat l1,l2 ;
 
-	vector<double> J_history;
+	mat e = Ls(X,y,theta) ;
+	vector<double> J_history ={e[0]} ;
 
 	int Tmax = 100;
 

@@ -5,25 +5,20 @@ using namespace std;
 using namespace arma;
 
 
-mat Ls(mat X,mat y,mat theta)
+mat Ls(int i,const mat& X, const mat& y, const mat& theta)
 {
-	mat loss= zeros<vec>(1);
-    mat t = X * theta;
-    int n= X.n_rows;
-    for(int i=0;i< n;i++) {
-        if (y[i] * t[i] < 0)
-            loss++;
-    }
-    return loss / n;
+	int n=X.n_rows;
+	return sum(y[i]-theta.t()*X(i))/n;
 }
 
 void adaline(const mat X,const mat y,mat& theta,string file_name)
 {
-	theta.zeros();
+	theta.randu();
 	int t=1 , n = X.n_rows;
 	mat l ;
 
-	vector<double> J_history;
+	mat e = Ls(0,X,y,theta) ;
+	vector<double> J_history ={e[0]} ;
 
 	int Tmax = 100;
 	
@@ -32,8 +27,9 @@ void adaline(const mat X,const mat y,mat& theta,string file_name)
 		for(int i=0;i<n;i++)
 		{
 			 
-			mat e = y[i]-theta.t()*X(i);
+			mat e = Ls(i,X,y,theta) ;
 			e.print("J :");
+			J_history.push_back(e[0]);
 			if(e[0] !=0)
 				theta=theta +2*e[0]*X(i);
 

@@ -27,8 +27,8 @@ int main(int argc, char const *argv[])
 		y[i]=c3[i];
 	}
 
-	// X.print("X :");
-	// y.print("y :");
+	X.print("X :");
+	y.print("y :");
 	adaline(X,y,theta,"adaline"+s);
 	return 0;
 }

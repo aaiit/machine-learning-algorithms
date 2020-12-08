@@ -8,6 +8,19 @@
 
 using namespace std;
 
+vector<pair<int,int>> PQ(int deg)
+{
+	vector<pair<int,int>> v;
+	for(int p=0;p<=deg;p++)
+	{
+		for(int q=0; p+q<= deg;q++ )
+		{
+			v.push_back(make_pair(p,q));
+		}
+	}
+	return v;
+}
+
 mat transformation(mat x,int np)
 {
 	vector<pair<int,int>> pq = PQ(np);
