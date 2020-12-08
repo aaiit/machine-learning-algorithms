@@ -49,18 +49,20 @@ void gradientDescent(const mat&    X,
 		J.print("J: ");
 		J_history.push_back(J[0]);
 
-		dg=sum(gradient-old_gradient);
 
+		it++;
 		if(it%1000==0)
 		{	
 			ofstream output_file("costs/"+file_name);
 		    for (const auto &e : J_history) output_file << e << " ";
 		}
-		it++;
+
+		dg=sum(gradient-old_gradient);
 	
 	}while(abs(dg[0])>0.0000001);
 
-	
+	ofstream output_file("costs/"+file_name);
+	for (const auto &e : J_history) output_file << e << " ";
 		
 	theta.save("W/"+file_name);
 }

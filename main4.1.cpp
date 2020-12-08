@@ -1,5 +1,6 @@
-// Algoruthm :   Logistic Regression without Nonlinear Transformation 
+// Algorithm :   Logistic Regression without Nonlinear Transformation 
 // Data : microchips.csv
+
 #include <iostream>
 #include <vector>
 #include "rapidcsv.h"
