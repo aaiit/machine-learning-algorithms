@@ -28,7 +28,7 @@ vector<pair<int,int>> PQ(int deg)
 	vector<pair<int,int>> v;
 	for(int p=0;p<=deg;p++)
 	{
-		for(int q=0; p+q< deg;q++ )
+		for(int q=0; p+q<= deg;q++ )
 		{
 			v.push_back(make_pair(p,q));
 		}
@@ -39,19 +39,20 @@ vector<pair<int,int>> PQ(int deg)
 mat transformation(mat x,int np)
 {
 	vector<pair<int,int>> pq = PQ(np);
-	mat X(x.n_rows , pq.size());
+	int K = pq.size();
+
+	cout<< "New Size : "<< K<<endl;
+	mat X(x.n_rows , K);
 	X.col(0).ones();
 
-	int k=0;
-	for(int i=1;i<=np;i++)
+	for(int i=0;i< x.n_rows;i++)
 	{
-		mat xx=X.col(i-1);
-		for(int j=0;j<x.n_rows;j++)
+		for(int j=0;j<K;j++)
 		{
 
-			pair<int,int> ppqq = pq[k++];
+			pair<int,int> ppqq = pq[j];
 			int p=ppqq.first , q= ppqq.second;
-			X.col(i)[j]= pow(x[0],p)*pow(x[1],q);
+			X(i,j)= pow(x[0],p)*pow(x[1],q);
 		}
 	}
 	return X;
@@ -70,7 +71,8 @@ int main(int argc, char const *argv[])
 
   	int m= c1.size();
 	
-	mat X(m, np),x(m,2);  
+	mat X(m, np),x(m,2); 
+
 	for(int i=0;i<m;i++)
 	{
 		x(i,0)=c1[i];  
@@ -78,6 +80,7 @@ int main(int argc, char const *argv[])
 	} 
 
 	X=transformation(x,np); 
+	// X.print("X :");
 
     mat y(m, 1);
 
@@ -86,10 +89,9 @@ int main(int argc, char const *argv[])
 	mat theta = arma::zeros<vec>(PQ(np).size());
 
 
-	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "pressure_p"+to_string(np)) ;
+	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "microchips_tr"+to_string(np)) ;
 
 	theta.print("Theta found by gradient descent:"); 
-
 
 	return 0;
 }
