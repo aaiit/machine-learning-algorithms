@@ -38,8 +38,6 @@ void pocket(const mat X,const mat y,mat& theta,string file_name)
 
 		for(int i=0;i<n;i++)
 		{
-			// pp(_theta(iw))pp(X(i,iw))
-
 			double p = _theta(iw)*X(i,iw);
 			if(p*y[i] < 0)
 			{
@@ -54,7 +52,7 @@ void pocket(const mat X,const mat y,mat& theta,string file_name)
 
 		if(l2[0] < l1[0]) theta= _theta;
 
-		l1.print("Pocket -> Ls "+to_string(t)+":");
+		l1.print(" Ls "+to_string(t)+":");
 		J_history.push_back(l1[l1[0]]);
 
 	}

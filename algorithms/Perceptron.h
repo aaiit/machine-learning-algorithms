@@ -21,13 +21,14 @@ void perceptron(const mat X,const mat y,mat& theta,string file_name)
 {
 	theta.randu();
 	int t=1 , n = X.n_rows;
-	mat l ;
+	mat l(1,1),_l =zeros<vec>(1) ;
 
 	mat e = Ls(X,y,theta) ;
 	vector<double> J_history ={e[0]} ;
 
 	do
 	{
+
 		for(int i=1;i<=n;i++)
 		{
 			mat p = theta.t()*X(i);
@@ -37,11 +38,12 @@ void perceptron(const mat X,const mat y,mat& theta,string file_name)
 				t++;
 			}
 		}
+		l=l;
 		l = Ls(X,y,theta);
 		l.print("Ls "+to_string(t)+":");
 		J_history.push_back(l[l[0]]);
 
-	}while(l[0]!=0);
+	}while(abs((l-_l)[0])> 0.00001);
 
 	ofstream coutput_file("costs/"+file_name);
 	for (const auto &e : J_history) coutput_file << e << " ";

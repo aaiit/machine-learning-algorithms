@@ -6,11 +6,9 @@
 #include "rapidcsv.h"
 using namespace std;
 
-int main(int argc, char const *argv[])
-{
-	// NS : R1590.csv S : R1352.csv   x,y,label
 
-	string s= "R1590";
+void test(string s)
+{
 	rapidcsv::Document doc("data/" + s + ".csv");
 
 	vector<float> c1 = doc.GetColumn<float>("x");
@@ -29,6 +27,15 @@ int main(int argc, char const *argv[])
 
 	X.print("X :");
 	y.print("y :");
-	adaline(X,y,theta,"adaline"+s);
+	adaline(X,y,theta,"adaline"+s,100);
+}
+int main(int argc, char const *argv[])
+{
+	//  x,y,label
+
+	test("R1131");
+	test("R1352");
+
+	
 	return 0;
 }

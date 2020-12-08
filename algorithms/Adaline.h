@@ -5,35 +5,35 @@ using namespace std;
 using namespace arma;
 
 
-mat Ls(int i,const mat& X, const mat& y, const mat& theta)
-{
-	int n=X.n_rows;
-	return sum(y[i]-theta.t()*X(i))/n;
-}
 
-void adaline(const mat X,const mat y,mat& theta,string file_name)
+mat Ls(const mat& X, const mat& y, const mat& theta)
+{
+	mat J;
+	int m;
+	m = y.n_rows;
+	J = sum((pow(((X*theta)-y), 2))/m) ;
+	return J;
+}
+void adaline(const mat X,const mat y, mat& theta,const string file_name,const int Tmax)
 {
 	theta.randu();
 	int t=1 , n = X.n_rows;
 	mat l ;
 
-	mat e = Ls(0,X,y,theta) ;
-	vector<double> J_history ={e[0]} ;
-
-	int Tmax = 100;
+	vector<double> J_history = {Ls(X,y,theta)[0]};
 	
 	for(int t=0;t<Tmax;t++)
 	{
 		for(int i=0;i<n;i++)
 		{
 			 
-			mat e = Ls(i,X,y,theta) ;
+			mat e = sum(y[i]-theta.t()*X(i))/n;
 			e.print("J :");
-			J_history.push_back(e[0]);
 			if(e[0] !=0)
 				theta=theta +2*e[0]*X(i);
 
 		}
+		J_history.push_back(Ls(X,y,theta)[0]);
 	}
 
 	ofstream coutput_file("costs/"+file_name);
