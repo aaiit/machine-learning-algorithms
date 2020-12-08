@@ -32,9 +32,6 @@ mat phi(vec x,int np)
 	for(int i=1;i<=np;i++)
 	{
 		mat xx=X.col(i-1);
-		// cout<<x.n_rows<<"#x#"<<x.n_cols<<endl;
-		// cout<<xx.n_rows<<"#X column#"<<xx.n_cols<<endl;
-		// X.col(i)=dot(xx,x);
 		for(int j=0;j<x.n_rows;j++)X.col(i)[j]=x[j]*X.col(i-1)[j];
 	}
 	return X;

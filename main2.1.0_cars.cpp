@@ -1,10 +1,10 @@
-// Algorithm : Linear Regression 
+// Algorithm : stochastic gradient Descent for linear regression 
 // Data : cars.csv
 
 #include <iostream>
 #include <vector>
 #include "rapidcsv.h"
-#include "GradientDescent.h"
+#include "StochasticGradientDescent.h"
 
 using namespace std;
 
@@ -47,9 +47,9 @@ int main(int argc, char const *argv[])
 	mat theta = arma::zeros<vec>(n+1);
 
 
-	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "cars") ;
+	stochasticgradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "cars-stochastic" ,5,2000) ;
 
-	theta.print("Theta found by gradient descent:");
+	theta.print("Theta found by stochastic gradient descent:");
 
 
 	return 0;

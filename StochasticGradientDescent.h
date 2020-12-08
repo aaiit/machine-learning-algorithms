@@ -24,42 +24,46 @@ double armijo(const mat& X, const mat& y, const mat& theta, mat gradient,mat com
     return alpha / eta;
 }
 
-void gradientDescent(const mat&    X,
-                     const mat&    y,
+
+void stochasticgradientDescent(const mat&    X,
+                     const mat&    Y,
                      mat&    theta,
                      mat  computeCost(const mat& X, const mat& y, const mat& theta),
                      mat  computeGradient(const mat& X, const mat& y, const mat& theta),
-                     string file_name)
+                     string file_name ,
+                     int batch_size,
+                     int iterations)
 {
 	int it=0;
 	int m,n;
-	m = y.n_rows;
+	m = Y.n_rows;
 	n = theta.n_elem;
 	mat gradient(n,1),old_gradient(n,1),dg;
 	gradient.ones();
 
 	vector<double> J_history;
-	do
+	
+	while(iterations--)
 	{
 		old_gradient=gradient;
-		gradient = computeGradient(X,y,theta) ;
-		double  alpha = armijo(X,y,theta,gradient,computeCost);
+
+		//  Select Batch
+		int p=it%m,q=(it+batch_size)%m ; 
+		if(p>q){it++;continue;}
+
+		mat x=X.rows(p, q) , y= Y.rows(p ,q);
+
+		gradient = computeGradient(x,y,theta) ;
+		double  alpha = armijo(x,y,theta,gradient,computeCost);
 		theta = theta-alpha*gradient ;
-		mat J = computeCost(X, y, theta);
+		mat J = computeCost(x, y, theta);
 		J.print("J: ");
 		J_history.push_back(J[0]);
-
-		dg=sum(gradient-old_gradient);
-
-		it++;
-		if(it%1000==0)
-		{	
-			ofstream output_file("loss_history:"+file_name);
-		    for (const auto &e : J_history) output_file << e << " ";
-		}
 	
-	}while(abs(dg[0])>0.0000001);
+	}
+	ofstream output_file("costs/"+file_name);
+    for (const auto &e : J_history) output_file << e << " ";
 
-	theta.save("W:"+file_name);
+	theta.save("W/"+file_name);
 }
 
