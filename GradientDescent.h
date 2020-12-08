@@ -1,14 +1,3 @@
-/*
- *
- * URL:      https://github.com/aaiit
- * Version:  8.40
- *
- * Copyright (C) 2020-2021 Abdellatif Ait Hammadi
- * All rights reserved.
- *
- *
- */
-
 #include <armadillo>
 #include <iostream>
 #include <stdio.h>
@@ -16,26 +5,10 @@
 using namespace std;
 using namespace arma;
 
-mat sigmoid(mat z)
-{
-	return 1/(1+exp(-z));
-}
-
-mat computeCost(const mat& X, const mat& y, const mat& theta)
-{
-	int m;
-	m = y.n_rows;
-
-	mat J(1,1);J[0]=0;
-    mat z=X*theta;
-    for(int i=0;i<m;i++){
-    J[0] =J[0]+ log(1 + exp(-y[i] * sum(z[i]))); 
-    } 
-    return J / m;
-}
 
 
-double armijo(const mat& X, const mat& y, const mat& theta, mat gradient) {
+double armijo(const mat& X, const mat& y, const mat& theta, mat gradient,mat computeCost(const mat& X, const mat& y, const mat& theta)
+	) {
 	// Armijo Hyperparameters
 	
     static double eps = .001;
@@ -54,9 +27,11 @@ double armijo(const mat& X, const mat& y, const mat& theta, mat gradient) {
 void gradientDescent(const mat&    X,
                      const mat&    y,
                      mat&    theta,
+                     mat  computeCost(const mat& X, const mat& y, const mat& theta),
+                     mat  computeGradient(const mat& X, const mat& y, const mat& theta),
                      string file_name)
 {
-	int iter;
+	int it=0;
 	int m,n;
 	m = y.n_rows;
 	n = theta.n_elem;
@@ -64,31 +39,28 @@ void gradientDescent(const mat&    X,
 	gradient.ones();
 
 	vector<double> J_history;
-	int it=0;
 	do
 	{
-		it++;
 		old_gradient=gradient;
-
-		for(int i=0;i<n;i++) 
-		{
-			gradient[i]= sum(dot(sigmoid(X*theta)-y,X.col(i)));
-		}
-
-
-		double  alpha = armijo(X,y,theta,gradient);
+		gradient = computeGradient(X,y,theta) ;
+		double  alpha = armijo(X,y,theta,gradient,computeCost);
 		theta = theta-alpha*gradient ;
 		mat J = computeCost(X, y, theta);
 		J.print("J: ");
 		J_history.push_back(J[0]);
 
 		dg=sum(gradient-old_gradient);
-		if(it%100==0)
-		{	cout<<it<<endl;
+
+		it++;
+		if(it%1000==0)
+		{	
 			ofstream output_file("loss_history:"+file_name);
-		    	for (const auto &e : J_history) output_file << e << " ";}
+		    for (const auto &e : J_history) output_file << e << " ";
+		}
+	
 	}while(abs(dg[0])>0.0000001);
 
+	ofstream output_file("loss_history:"+file_name);
+    for (const auto &e : J_history) output_file << e << " ";
 }
-
 
