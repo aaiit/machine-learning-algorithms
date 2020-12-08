@@ -1,52 +1,23 @@
-#include <iostream>
-#include <vector>
-#include "rapidcsv.h"
-#include "GradientDescent.h"
-
+#include <bits/stdc++.h>
 using namespace std;
 
-mat LeastSquaesCost(const mat& X, const mat& y, const mat& theta)
+vector<pair<int,int>> pq(int deg)
 {
-	mat J;
-	int m;
-	m = y.n_rows;
-	J = sum((pow(((X*theta)-y), 2))/m) ;
-	return J;
-}
-
-mat computeGradient(const mat& X, const mat& y, const mat& theta)
-{
-	int m= X.n_rows;
-	return 2*arma::trans(X)*(X*theta-y)/m;
+	vector<pair<int,int>> v;
+	for(int p=0;p<=deg;p++)
+	{
+		for(int q=0; p+q< deg;q++ )
+		{
+			v.push_back(make_pair(p,q));
+		}
+	}
+	return v;
 }
 
 int main(int argc, char const *argv[])
 {
-	rapidcsv::Document doc("data/cars.csv");
-
-  	vector<float> cspeed = doc.GetColumn<float>("speed");
-  	vector<float> cdist = doc.GetColumn<float>("dist");
-
-  	int m= cspeed.size();
-	int n=1;
-	
-	mat X(m, 2);  
-	for(int i=0;i<m;i++)
-	{
-		X(i,0)=1;
-		X(i,1)=cspeed[i];  
-	}  
-   
-    mat y(m, 1);
-
-	for(int i=0;i<m;i++)y[i]=cdist[i]; 
-
-	mat theta = arma::zeros<vec>(n+1);
-
-	gradientDescent(X, y, theta,LeastSquaesCost,computeGradient,"cars");
-
-	printf("Theta found by gradient descent: \n") ;
-	printf("%f %f \n", theta(0), theta(1)) ;
-	
+	//  p + q <= deg
+	cout<<"size of Q(6) = "<<pq(6).size()<<endl;
+	for(auto e:pq(6))cout<<e.first<<" "<<e.second<<endl;
 	return 0;
 }

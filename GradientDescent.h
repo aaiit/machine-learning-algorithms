@@ -51,15 +51,17 @@ void gradientDescent(const mat&    X,
 
 		dg=sum(gradient-old_gradient);
 
-		it++;
 		if(it%1000==0)
 		{	
 			ofstream output_file("costs/"+file_name);
 		    for (const auto &e : J_history) output_file << e << " ";
 		}
+		it++;
 	
 	}while(abs(dg[0])>0.0000001);
 
+	
+		
 	theta.save("W/"+file_name);
 }
 

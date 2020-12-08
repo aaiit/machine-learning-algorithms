@@ -40,20 +40,7 @@ mat logisticGradient(const mat& X, const mat& y, const mat& theta)
 }
 
 
-mat LeastSquaesCost(const mat& X, const mat& y, const mat& theta)
-{
-	mat J;
-	int m;
-	m = y.n_rows;
-	J = sum((pow(((X*theta)-y), 2))/m) ;
-	return J;
-}
 
-mat LeastSquaesGradient(const mat& X, const mat& y, const mat& theta)
-{
-	int m= X.n_rows;
-	return 2*arma::trans(X)*(X*theta-y)/m;
-}
 int main(int argc, char const *argv[])
 {
 	rapidcsv::Document doc("data/binary.csv");
@@ -79,14 +66,34 @@ int main(int argc, char const *argv[])
     mat y(m, 1);
 	for(int i=0;i<m;i++)y[i]=x4[i];   
    	
-	mat theta = arma::zeros<vec>(n+1);		
-	
-	//gradientDescent(X, y, theta,logisticCost, logisticGradient, "binary") ;
-	//theta.print("Theta found by logistic gradient descent") ;
+   	cout<<"theta : zeros  or ones or normal";
+   	string s;
+   	cin>>s;
+
+	mat theta(n+1,1);
+
+   	if(s == "zeros" )
+	{
+		// Fist case :theta initialized by zeros
+		theta.zeros();
+	}
+   	else if ( s == "ones" )
+	{// Second case :theta initialized by ones
+		theta.ones();}
+   	else if(s =="normal")
+   	{
+			// Third case :theta initialized by Gaussian/normal distribution with μ = 0 and σ = 1
+			theta.randn();
+   	}
+   	else theta.zeros();
+
+
+
+
+	gradientDescent(X, y, theta,logisticCost, logisticGradient, "binary_"+s) ;
+	theta.print("Theta found by logistic gradient descent") ;
 	
 
-	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "binary-gd") ;
 
-	theta.print("Theta found by gradient descent:");
 	return 0;
 }
