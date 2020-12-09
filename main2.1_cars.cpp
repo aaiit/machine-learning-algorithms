@@ -14,22 +14,22 @@ int main(int argc, char const *argv[])
 {
 	rapidcsv::Document doc("data/cars.csv");
 
-  	vector<float> cspeed = doc.GetColumn<float>("speed");
-  	vector<float> cdist = doc.GetColumn<float>("dist");
+  	vector<float> c1 = doc.GetColumn<float>("speed");
+  	vector<float> c2 = doc.GetColumn<float>("dist");
 
-  	int m= cspeed.size();
+  	int m= c1.size();
 	int n=1;
 	
 	mat X(m, 2);  
 	for(int i=0;i<m;i++)
 	{
 		X(i,0)=1;
-		X(i,1)=cspeed[i];  
+		X(i,1)=c1[i];  
 	}  
    
     mat y(m, 1);
 
-	for(int i=0;i<m;i++)y[i]=cdist[i]; 
+	for(int i=0;i<m;i++)y[i]=c2[i]; 
 
 	mat theta = arma::zeros<vec>(n+1);
 

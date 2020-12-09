@@ -20,7 +20,7 @@ void adaline(const mat X,const mat y, mat& theta,const string file_name,const in
 	int t=1 , n = X.n_rows;
 	mat l ;
 
-	vector<double> J_history = {Ls(X,y,theta)[0]};
+	vector<double> J_history;
 	
 	for(int t=0;t<Tmax;t++)
 	{
