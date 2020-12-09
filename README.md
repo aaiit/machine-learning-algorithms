@@ -42,7 +42,7 @@ todo :  implimenting 10
 
 # AMSGrad (todo)
 
-
-![alt text](algotithms/ok.png)
+## Appendix
+![Appendix](algorithms/ok.png)
 
 
