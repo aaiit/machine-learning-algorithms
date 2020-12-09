@@ -12,7 +12,7 @@ costs : typeerror-/problemName-AlgorithmName-nameofdata
 todo :  implimenting 10
 		draw weight on images
 -->
-
+## Algorithms
 
 # Perceptron
 
@@ -43,6 +43,7 @@ todo :  implimenting 10
 # AMSGrad (todo)
 
 ## Appendix
+
 ![Appendix](algorithms/ok.png)
 
 

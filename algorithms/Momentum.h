@@ -1,5 +1,3 @@
-#include "base.h"
-
 void momentum(const mat&    X,
                      const mat&    Y,
                      mat&    theta,

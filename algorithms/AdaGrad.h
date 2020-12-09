@@ -1,5 +1,3 @@
-#include "base.h"
-
 void adagrad(const mat&    X,
                      const mat&    Y,
                      mat&    theta,
@@ -9,7 +7,10 @@ void adagrad(const mat&    X,
                      int batch_size,
                      int iterations)
 {
-	double bita = .9;
+	
+	double alpha = .001 ;
+	double ep = 1e-7; // the fuzz factor
+
 
 	int it=0;
 	int m,n;
@@ -30,11 +31,13 @@ void adagrad(const mat&    X,
 		mat x=X.rows(p, q) , y= Y.rows(p ,q);
 
 		gradient = computeGradient(x,y,theta) ;
-
 		V = V + dot(gradient,gradient); // Vomentum
 
+
 		double  alpha = armijo(x,y,theta,V,computeCost);
-		theta = theta-alpha*V ;
+
+		theta = theta-alpha*dot(pow(V + ep,-2) , gradient) ; // Adagrad updating W
+
 		mat J = computeCost(x, y, theta);
 		J.print("J: ");
 		J_history.push_back(J[0]);

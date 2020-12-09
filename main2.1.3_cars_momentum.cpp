@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
 	mat theta = arma::zeros<vec>(n+1);
 
 
-	momentum(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "momentum-gradient-descent_cars" ,5,1000) ;
+	momentum(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "regression_momentum-gradient-descent_cars" ,5,1000) ;
 
 	theta.print("Theta found by momentum:");
 

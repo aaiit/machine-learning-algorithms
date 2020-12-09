@@ -1,6 +1,4 @@
-#include "base.h"
-
-void stochasticgradientDescent(const mat&    X,
+void stochasticgradientdescent(const mat&    X,
                      const mat&    Y,
                      mat&    theta,
                      mat  computeCost(const mat& X, const mat& y, const mat& theta),

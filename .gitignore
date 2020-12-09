@@ -1,7 +1,8 @@
-notes.txt
-*.py
-exe*
-costs/*
-W/*
-main.cpp
 bin/*
+costs/*
+data_png/*
+error_png/*
+py/*
+W/*
+
+

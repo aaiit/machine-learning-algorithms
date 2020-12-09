@@ -42,12 +42,10 @@ mat transformation(mat x,int np)
 	}
 	return X;
 }
-int main(int argc, char const *argv[])
-{
-	int np ;
-	cout<<"NP (6 ) : "<<endl;
-	cin>>np;
 
+
+void test(int np)
+{
 	rapidcsv::Document doc("data/microchips.csv");
 
   	vector<float> c1 = doc.GetColumn<float>("x");
@@ -74,9 +72,13 @@ int main(int argc, char const *argv[])
 	mat theta = arma::zeros<vec>(PQ(np).size());
 
 
-	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "microchips_tr"+to_string(np)) ;
+	gradientDescent(X, y, theta,logisticCost, logisticGradient, "Nonlinear-Transformation_Gradient-Descent_microchips-Q"+to_string(np)) ;
 
-	theta.print("Theta found by gradient descent:"); 
+	theta.print("Theta found :"); 
+}
 
+int main(int argc, char const *argv[])
+{
+	for(int np=1;np<=6;np++)test(np);
 	return 0;
 }

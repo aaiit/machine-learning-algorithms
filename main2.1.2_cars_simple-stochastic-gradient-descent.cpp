@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include "rapidcsv/rapidcsv.h"
+
+#include "algorithms/base.h"
 #include "algorithms/GradientDescentStochastic.h"
 
 using namespace std;
