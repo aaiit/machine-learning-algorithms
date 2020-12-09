@@ -1,4 +1,4 @@
-#include "algorithms/base.h"
+#include "base.h"
 
 void momentum(const mat&    X,
                      const mat&    Y,

@@ -1,4 +1,4 @@
-#include "algorithms/base.h"
+#include "base.h"
 
 void gradientDescent(const mat&    X,
                      const mat&    y,
