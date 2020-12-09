@@ -3,7 +3,7 @@
 
 #include <bits/stdc++.h>
 #include "algorithms/Adaline.h"
-#include "rapidcsv.h"
+#include "rapidcsv/rapidcsv.h"
 using namespace std;
 
 
@@ -27,7 +27,7 @@ void test(string s)
 
 	X.print("X :");
 	y.print("y :");
-	adaline(X,y,theta,"adaline"+s,100);
+	adaline(X,y,theta,"binary-classification_adaline"+s,100);
 }
 int main(int argc, char const *argv[])
 {

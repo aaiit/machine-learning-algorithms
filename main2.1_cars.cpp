@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "rapidcsv.h"
+#include "rapidcsv/rapidcsv.h"
 #include "algorithms/GradientDescent.h"
 
 using namespace std;
@@ -34,7 +34,7 @@ int main(int argc, char const *argv[])
 	mat theta = arma::zeros<vec>(n+1);
 
 
-	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "cars") ;
+	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "regression_gradient-descent_cars") ;
 
 	theta.print("Theta found by gradient descent:");
 

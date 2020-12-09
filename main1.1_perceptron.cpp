@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 #include "algorithms/Perceptron.h"
-#include "rapidcsv.h"
+#include "rapidcsv/rapidcsv.h"
 using namespace std;
 
 
@@ -24,7 +24,7 @@ void test(string s)
 		y[i]=c3[i];
 	}
 
-	perceptron(X,y,theta,"perceptron_"+s);
+	perceptron(X,y,theta,"binary-classification_perceptron_"+s);
 }
 int main(int argc, char const *argv[])
 {

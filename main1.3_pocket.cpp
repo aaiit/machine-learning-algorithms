@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 #include "algorithms/Pocket.h"
-#include "rapidcsv.h"
+#include "rapidcsv/rapidcsv.h"
 using namespace std;
 
 void test(string s)
@@ -23,7 +23,7 @@ void test(string s)
 		y[i]=c3[i];
 	}
 
-	pocket(X,y,theta,"pocket"+s);
+	pocket(X,y,theta,"binary-classification_pocket"+s);
 }
 int main(int argc, char const *argv[])
 {
