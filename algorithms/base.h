@@ -25,18 +25,25 @@ mat sigmoid(mat z)
 {
 	return 1/(1+exp(-z));
 }
+double sigmoid(double z)
+{
+	return 1/(1+exp(-z));
+}
 
 mat logisticCost(const mat& X, const mat& y, const mat& theta)
 {
 	int m;
 	m = y.n_rows;
 
-	mat J(1,1);
+	double J=0;
     mat z=X*theta;
     for(int i=0;i<m;i++){
-    J[0] =J[0]+ log(1 + exp(-y[i] * sum(z[i]))); 
+    	double s = sum(z(i));
+    	J =J+ y[i]*log(sigmoid(s)) + (1-y[i])*(1-log(sigmoid(s))) ; 
+    	// J =J+log(1 + exp(-y[i] * sum(z[i]))); 
     } 
-    return J / m;
+    mat e(1,1);e[0]=-J / m;
+    return e;
 }
 
 mat logisticGradient(const mat& X, const mat& y, const mat& theta)

@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
 
 
  //    // Stochastic gradient descent
-	// stochasticgradientdescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "regression_stochastic-gradient-descent_cars" ,5,1000) ;
+	// stochasticgradientdescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "regression_stochastic-gradient-descent_cars" ,5,1000,1) ;
 	// theta.print("Theta found by Stochastic gradient descent:");
     
  //    // Momentum
@@ -48,7 +48,7 @@ int main(int argc, char const *argv[])
 
     // AdaGrad
 	theta.zeros();
-	adagrad(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "regression_AdaGrad_cars" ,5,1000) ;
+	adagrad(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "regression_AdaGrad_cars" ,5,1000,"armijo") ;
 
     // RMSprop
     

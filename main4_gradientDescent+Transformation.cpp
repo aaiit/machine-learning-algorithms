@@ -46,11 +46,12 @@ mat transformation(mat x,int np)
 
 void test(int np)
 {
+
 	rapidcsv::Document doc("data/microchips.csv");
 
   	vector<float> c1 = doc.GetColumn<float>("x");
   	vector<float> c2 = doc.GetColumn<float>("y");
-  	vector<float> c3 = doc.GetColumn<float>("z");
+  	vector<float> c3 = doc.GetColumn<float>("label");
 
   	int m= c1.size();
 	
@@ -63,7 +64,7 @@ void test(int np)
 	} 
 
 	X=transformation(x,np); 
-	// X.print("X :");
+	X.print("X :");
 
     mat y(m, 1);
 
@@ -72,7 +73,7 @@ void test(int np)
 	mat theta = arma::zeros<vec>(PQ(np).size());
 
 
-	gradientDescent(X, y, theta,logisticCost, logisticGradient, "Nonlinear-Transformation_Gradient-Descent_microchips-Q"+to_string(np)) ;
+	gradientDescent(X, y, theta,logisticCost, logisticGradient, "Nonlinear-Transformation_Gradient-Descent_microchips-Q"+to_string(np),1,"0.0001") ;
 
 	theta.print("Theta found :"); 
 }

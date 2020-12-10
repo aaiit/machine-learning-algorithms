@@ -21,6 +21,7 @@ mat phi(vec x,int np)
 	}
 	return X;
 }
+
 int main(int argc, char const *argv[])
 {
 	int np ;
@@ -49,7 +50,7 @@ int main(int argc, char const *argv[])
 	mat theta = arma::zeros<vec>(np+1);
 
 
-	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "pressure_p"+to_string(np)) ;
+	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "pressure_p"+to_string(np),1,"armijo") ;
 
 	theta.print("Theta found by gradient descent:"); 
 

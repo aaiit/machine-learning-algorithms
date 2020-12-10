@@ -5,7 +5,9 @@ void gradientDescent(const mat&    X,
                      mat&    theta,
                      mat  computeCost(const mat& X, const mat& y, const mat& theta),
                      mat  computeGradient(const mat& X, const mat& y, const mat& theta),
-                     string file_name)
+                     string file_name,
+                     bool show_error,
+                     string step)
 {
 	int it=0;
 	int m,n;
@@ -25,15 +27,20 @@ void gradientDescent(const mat&    X,
 	{
 		old_gradient=gradient;
 		gradient = computeGradient(X,y,theta) ;
-		double  alpha = armijo(X,y,theta,gradient,computeCost); // wolfe or armijo
+
+		double  alpha;
+		if(step == "armijo") alpha=  armijo(X,y,theta,gradient,computeCost);
+		else alpha = atof(step.c_str());
+
+
 		theta = theta-alpha*gradient ;
 
 		error = computeCost(X, y, theta);
-		error.print("training error: ");
+		if(show_error)error.print("training error ("+to_string(it)+"): ");
 		training_error_history.push_back(error[0]);
 
 		error = computeCost(testing_X, testing_y, theta);
-		error.print("testing error: ");
+		// error.print("testing error: ");
 		testing_error_history.push_back(error[0]);
 
 		it++;
@@ -64,4 +71,6 @@ void gradientDescent(const mat&    X,
 	for (const auto &e : theta) Woutput_file << e << " ";
 			
 }
+
+
 

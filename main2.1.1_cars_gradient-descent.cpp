@@ -34,7 +34,7 @@ int main(int argc, char const *argv[])
 	mat theta = arma::zeros<vec>(n+1);
 
 
-	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "regression_gradient-descent_cars") ;
+	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "regression_gradient-descent_cars",1,"armijo") ;
 
 	theta.print("Theta found by gradient descent:");
 

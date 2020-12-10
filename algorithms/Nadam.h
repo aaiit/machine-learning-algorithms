@@ -1,6 +1,6 @@
 #include "base.h"
 
-void (const mat&    X,
+void nadam(const mat&    X,
                      const mat&    Y,
                      mat&    theta,
                      mat  computeCost(const mat& X, const mat& y, const mat& theta),

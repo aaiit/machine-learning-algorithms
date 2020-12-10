@@ -49,7 +49,7 @@ int main(int argc, char const *argv[])
 
 
 	string s = "zeros";
-	gradientDescent(X, y, theta,logisticCost, logisticGradient, "binary_"+s) ;
+	gradientDescent(X, y, theta,logisticCost, logisticGradient, "binary_"+s,1,"armijo") ;
 	theta.print("Theta found by logistic gradient descent") ;
 	
 
