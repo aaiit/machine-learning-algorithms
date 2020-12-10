@@ -79,6 +79,10 @@ void test(int np)
 
 int main(int argc, char const *argv[])
 {
-	for(int np=1;np<=6;np++)test(np);
+	// for(int np=1;np<=6;np++)test(np);
+	int np;
+	cout<<"np : "<<endl;
+	cin>>np;
+	test(np);
 	return 0;
 }

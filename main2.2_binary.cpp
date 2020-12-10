@@ -41,10 +41,10 @@ int main(int argc, char const *argv[])
 	theta.zeros();
 	
 	// Second case :theta initialized by ones
-	// theta.ones();}
+	// theta.ones();
 
 	// Third case :theta initialized by Gaussian/normal distribution with μ = 0 and σ = 1
-	//theta.randn();
+	// theta.randn();
 
 
 

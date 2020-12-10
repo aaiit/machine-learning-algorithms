@@ -53,7 +53,7 @@ void pocket(const mat X,const mat y,mat& theta,string file_name)
 		if(l2[0] < l1[0]) theta= _theta;
 
 		l1.print(" Ls "+to_string(t)+":");
-		J_history.push_back(l1[l1[0]]);
+		J_history.push_back(l1[0]);
 
 	}
 

@@ -33,8 +33,8 @@ int main(int argc, char const *argv[])
 
 	mat theta = arma::zeros<vec>(n+1);
 
-
-	stochasticgradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "regression_stochastic-gradient-descent_cars" ,5,2000) ;
+	
+	stochasticgradientdescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "regression_stochastic-gradient-descent_cars" ,5,2000) ;
 
 	theta.print("Theta found by stochastic gradient descent:");
 

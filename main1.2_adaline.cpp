@@ -33,9 +33,8 @@ int main(int argc, char const *argv[])
 {
 	//  x,y,label
 
-	test("R1131");
-	test("R1352");
-
+	test("moon");
+	test("blobs");
 	
 	return 0;
 }

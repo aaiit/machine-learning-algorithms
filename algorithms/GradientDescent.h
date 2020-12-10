@@ -28,23 +28,25 @@ void gradientDescent(const mat&    X,
 		double  alpha = armijo(X,y,theta,gradient,computeCost); // wolfe or armijo
 		theta = theta-alpha*gradient ;
 
-		error = computeCost(training_X, training_y, theta);
+		error = computeCost(X, y, theta);
 		error.print("training error: ");
 		training_error_history.push_back(error[0]);
 
 		error = computeCost(testing_X, testing_y, theta);
 		error.print("testing error: ");
-		training_error_history.push_back(error[0]);
+		testing_error_history.push_back(error[0]);
 
 		it++;
 		if(it%1000==0)
 		{	
-		ofstream coutput_file("costs/training-error_"+file_name);
-		for (const auto &e : training_error_history) coutput_file << e << " ";
-		
-		coutput_file=ofstream("costs/testing-error_"+file_name);
-		for (const auto &e : training_error_history) coutput_file << e << " ";		
-		
+			ofstream coutput_file("costs/training-error_"+file_name);
+			for (const auto &e : training_error_history) coutput_file << e << " ";
+			
+			coutput_file=ofstream("costs/testing-error_"+file_name);
+			for (const auto &e : testing_error_history) coutput_file << e << " ";		
+			
+			ofstream Woutput_file("W/"+file_name);
+			for (const auto &e : theta) Woutput_file << e << " ";
 		}
 
 		dg=sum(gradient-old_gradient);

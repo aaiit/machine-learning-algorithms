@@ -1,20 +1,23 @@
 <!-- 
-
-
-
-Compile command : g++ main<>.cpp -o bin/exe<> -llapack -lblas -larmadillo
-% git add -A; git commit -m "momentum" ; git push
+git add -A; git commit -m "momentum" ; git push
 
 https://towardsdatascience.com/10-gradient-descent-optimisation-algorithms-86989510b5e9
 
 costs : typeerror-/problemName-AlgorithmName-nameofdata
 
-todo :  implimenting 10
-		draw weight on images
+
+TODO : change logistic fonction
+		fix tp 4
 -->
+## Requirements
+	Armadillo is a templated C++ linear algebra library
+
+## Command line
+	g++ main_exemple.cpp -o bin/exe -llapack -lblas -larmadillo
+
 ## Algorithms
 
-# Perceptron
+# Perceptron 
 
 # Adaline
 

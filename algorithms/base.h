@@ -71,28 +71,3 @@ double armijo(const mat& X, const mat& y, const mat& theta, mat gradient,mat com
     return alpha / eta;
 }
 
-// double doldstein(const mat& X, const mat& y, const mat& theta, mat gradient,mat computeCost(const mat& X, const mat& y, const mat& theta)) 
-// {
-// 	double alpha = 1;
-
-// 	double phi_alpha = computeCost(X,y,theta + alpha*gradient);
-
-// 	double d_phi_alpha = 1e5*(computeCost(X,y,theta + (alpha + 1e-5)*gradient) - computeCost(X,y,theta + alpha*gradient) );
-
-
-// }
-
-
-// double wolfe(const mat& X, const mat& y, const mat& theta, mat gradient,mat computeCost(const mat& X, const mat& y, const mat& theta)) 
-// {
-// 	double alpha = 10.e-15 , eps = 0.25;
-// 	double eta = 10;
-
-// 	mat d_phi_alpha_0 = 1e5*(computeCost(X,y,theta + ( 1e-5)*gradient) - computeCost(X,y,theta + alpha*gradient) );
-
-// 	mat d_phi_alpha = 1e5*(computeCost(X,y,theta + (alpha + 1e-5)*gradient) - computeCost(X,y,theta + alpha*gradient) );
-
-// 	while(d_phi_alpha[0] >=eps * d_phi_alpha_0[0]) alpha*=eta;
-// 	return alpha/eta;
-
-// }
