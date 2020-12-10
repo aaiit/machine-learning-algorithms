@@ -1,5 +1,5 @@
 <!-- 
-git add -A; git commit -m "momentum" ; git push
+git add -A; git commit -m "moon" ; git push
 
 https://towardsdatascience.com/10-gradient-descent-optimisation-algorithms-86989510b5e9
 
