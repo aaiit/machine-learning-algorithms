@@ -1,8 +1,8 @@
 void stochasticgradientdescent(const mat&    X,
                      const mat&    Y,
-                     mat&    theta,
-                     mat  computeCost(const mat& X, const mat& y, const mat& theta),
-                     mat  computeGradient(const mat& X, const mat& y, const mat& theta),
+                     mat&    parameters,
+                     mat  computeCost(const mat& X, const mat& y, const mat& parameters),
+                     mat  computeGradient(const mat& X, const mat& y, const mat& parameters),
                      string file_name ,
                      int batch_size,
                      int iterations)
@@ -10,7 +10,7 @@ void stochasticgradientdescent(const mat&    X,
 	int it=0;
 	int m,n;
 	m = Y.n_rows;
-	n = theta.n_elem;
+	n = parameters.n_elem;
 	mat gradient(n,1),dg;
 	gradient.ones();
 
@@ -24,10 +24,10 @@ void stochasticgradientdescent(const mat&    X,
 
 		mat x=X.rows(p, q) , y= Y.rows(p ,q);
 
-		gradient = computeGradient(x,y,theta) ;
-		double  alpha = armijo(x,y,theta,gradient,computeCost);
-		theta = theta-alpha*gradient ;
-		mat J = computeCost(x, y, theta);
+		gradient = computeGradient(x,y,parameters) ;
+		double  alpha = armijo(x,y,parameters,gradient,computeCost);
+		parameters = parameters-alpha*gradient ;
+		mat J = computeCost(x, y, parameters);
 		J.print("J: ");
 		J_history.push_back(J[0]);
 	
@@ -36,6 +36,6 @@ void stochasticgradientdescent(const mat&    X,
     for (const auto &e : J_history) output_file << e << " ";
 
 	ofstream Woutput_file("W/"+file_name);
-	for (const auto &e : theta) Woutput_file << e << " ";
+	for (const auto &e : parameters) Woutput_file << e << " ";
 }
 

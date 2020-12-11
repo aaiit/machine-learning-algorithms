@@ -50,7 +50,7 @@ int main(int argc, char const *argv[])
 	mat theta = arma::zeros<vec>(np+1);
 
 
-	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "pressure_p"+to_string(np),1,"armijo") ;
+	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "pressure_p"+to_string(np),1,"armijo",1e-5) ;
 
 	theta.print("Theta found by gradient descent:"); 
 

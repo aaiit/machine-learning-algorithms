@@ -42,7 +42,7 @@ int main(int argc, char const *argv[])
 	X.insert_cols(0, X_One);
 	
 
-	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "pop",1,"armijo") ;
+	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "pop",1,"armijo",1e-5) ;
 
 	theta.print("Theta found by gradient descent:");
 

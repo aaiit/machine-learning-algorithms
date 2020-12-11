@@ -2,18 +2,22 @@
 
 void gradientDescent(const mat&    X,
                      const mat&    y,
-                     mat&    theta,
-                     mat  computeCost(const mat& X, const mat& y, const mat& theta),
-                     mat  computeGradient(const mat& X, const mat& y, const mat& theta),
+                     mat&    parameters,
+                     double  computeCost(const mat& X, const mat& y, const mat& parameters),
+                     mat  computeGradient(const mat& X, const mat& y, const mat& parameters),
                      string file_name,
-                     bool show_error,
-                     string step)
+                     bool debug,
+                     string step,
+                     double tol)
 {
+	parameters.randu();
+	mat _parameters;
+
 	int it=0;
 	int m,n;
 	m = y.n_rows;
-	n = theta.n_elem;
-	mat gradient(n,1),old_gradient(n,1),dg,error;
+	n = parameters.n_elem;
+	mat gradient(n,1),error;
 	gradient.ones();
 
 	int training_size = m*.8;
@@ -25,25 +29,28 @@ void gradientDescent(const mat&    X,
 	vector<double> training_error_history , testing_error_history;
 	do
 	{
-		old_gradient=gradient;
-		gradient = computeGradient(X,y,theta) ;
+		it++;_parameters = parameters;
+
+		gradient = computeGradient(X,y,parameters) ;
 
 		double  alpha;
-		if(step == "armijo") alpha=  armijo(X,y,theta,gradient,computeCost);
+		if(step == "armijo") alpha=  armijo(X,y,parameters,gradient,computeCost);
 		else alpha = atof(step.c_str());
 
 
-		theta = theta-alpha*gradient ;
+		parameters = parameters-alpha*gradient ;
 
-		error = computeCost(X, y, theta);
-		if(show_error)error.print("training error ("+to_string(it)+"): ");
+		error = computeCost(X, y, parameters);
+		if(debug){
+			error.print("training error ("+to_string(it)+"): ");
+			cout<<"alpha : "<<alpha<<endl;
+		}
 		training_error_history.push_back(error[0]);
 
-		error = computeCost(testing_X, testing_y, theta);
-		// error.print("testing error: ");
+		error = computeCost(testing_X, testing_y, parameters);
+
 		testing_error_history.push_back(error[0]);
 
-		it++;
 		if(it%1000==0)
 		{	
 			ofstream coutput_file("costs/training-error_"+file_name);
@@ -53,13 +60,12 @@ void gradientDescent(const mat&    X,
 			for (const auto &e : testing_error_history) coutput_file << e << " ";		
 			
 			ofstream Woutput_file("W/"+file_name);
-			for (const auto &e : theta) Woutput_file << e << " ";
+			for (const auto &e : parameters) Woutput_file << e << " ";
 		}
 
-		dg=sum(gradient-old_gradient);
 	
-	}while(abs(dg[0])>0.0000001);
-
+	}while(norm(parameters - _parameters)>1e-5);
+	
 	ofstream coutput_file("costs/training-error_"+file_name);
 	for (const auto &e : training_error_history) coutput_file << e << " ";
 	
@@ -68,7 +74,7 @@ void gradientDescent(const mat&    X,
 		
 
 	ofstream Woutput_file("W/"+file_name);
-	for (const auto &e : theta) Woutput_file << e << " ";
+	for (const auto &e : parameters) Woutput_file << e << " ";
 			
 }
 
