@@ -1,3 +1,27 @@
+
+
+<table>
+
+  <tr>
+    <td><img src="data_png/blobs.png" width=270 height=100></td>
+    <td><img src="data_png/moon.png" width=270 height=100></td>
+    <td><img src="data_png/cars.png" width=270 height=100></td>
+  </tr>
+	
+<tr>
+    <td><img src="data_png/microchips_deg1.png" width=270 height=100></td>
+    <td><img src="data_png/microchips_deg2.png" width=270 height=100></td>
+    <td><img src="data_png/microchips_deg4.png" width=270 height=100></td>
+  </tr>
+  <tr>
+    <td><img src="data_png/microchips_deg5.png" width=270 height=100></td>
+    <td><img src="data_png/microchips_deg6.png" width=270 height=100></td>
+    <td><img src="data_png/pressure.png" width=270 height=100></td>
+  </tr>
+  
+  
+ </table>
+ 
 <!-- 
 git add -A; git commit -m "moon" ; git push
 
