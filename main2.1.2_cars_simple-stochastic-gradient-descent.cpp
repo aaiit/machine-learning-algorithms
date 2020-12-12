@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "rapidcsv/rapidcsv.h"
+#include "includes/rapidcsv.h"
 
 #include "algorithms/base.h"
 #include "algorithms/GradientDescentStochastic.h"

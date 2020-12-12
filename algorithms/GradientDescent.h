@@ -10,7 +10,7 @@ void gradientDescent(const mat&    X,
                      string step,
                      double tol)
 {
-	parameters.randu();
+	// parameters.randu();
 	mat _parameters;
 
 	int it=0;
@@ -51,30 +51,31 @@ void gradientDescent(const mat&    X,
 
 		testing_error_history.push_back(error[0]);
 
-		if(it%1000==0)
-		{	
-			ofstream coutput_file("costs/training-error_"+file_name);
-			for (const auto &e : training_error_history) coutput_file << e << " ";
-			
-			coutput_file=ofstream("costs/testing-error_"+file_name);
-			for (const auto &e : testing_error_history) coutput_file << e << " ";		
-			
-			ofstream Woutput_file("W/"+file_name);
-			for (const auto &e : parameters) Woutput_file << e << " ";
-		}
 
+
+		if ( kbhit() ) { 
+  
+            // Stores the pressed key in ch 
+            char ch = getch(); 
+            // Terminates the loop 
+            // when escape is pressed 
+            if (int(ch) == 27) 
+                break; 
+  
+        } 
 	
-	}while(norm(parameters - _parameters)>1e-5);
+	}while(norm(parameters - _parameters)>tol );
 	
 	ofstream coutput_file("costs/training-error_"+file_name);
 	for (const auto &e : training_error_history) coutput_file << e << " ";
 	
 	coutput_file=ofstream("costs/testing-error_"+file_name);
-	for (const auto &e : training_error_history) coutput_file << e << " ";
-		
-
+	for (const auto &e : testing_error_history) coutput_file << e << " ";		
+	
 	ofstream Woutput_file("W/"+file_name);
 	for (const auto &e : parameters) Woutput_file << e << " ";
+
+	cout<<"END"<<endl;
 			
 }
 

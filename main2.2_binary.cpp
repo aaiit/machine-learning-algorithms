@@ -2,8 +2,9 @@
 // Data : binary.csv
 #include <iostream>
 #include <vector>
-#include "rapidcsv/rapidcsv.h"
+#include "includes/rapidcsv.h"
 #include "algorithms/GradientDescent.h"
+#include "algorithms/Adaline.h"
 
 using namespace std;
 
@@ -49,7 +50,10 @@ int main(int argc, char const *argv[])
 
 
 	string s = "zeros";
-	gradientDescent(X, y, theta,logisticCost, logisticGradient, "binary_"+s,1,"armijo",1e-5) ;
+	//gradientDescent(X, y, theta,logisticCost, logisticGradient, "binary_"+s,1,"0.01",1e-10) ;
+	adaline(X,y,theta,"binary_"+s,100);
+
+
 	theta.print("Theta found by logistic gradient descent") ;
 	
 

@@ -32,6 +32,8 @@ void stochasticgradientdescent(const mat&    X,
 		J_history.push_back(J[0]);
 	
 	}
+
+	
 	ofstream output_file("costs/training-error_"+file_name);
     for (const auto &e : J_history) output_file << e << " ";
 

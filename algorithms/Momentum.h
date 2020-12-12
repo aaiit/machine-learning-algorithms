@@ -5,15 +5,13 @@ void momentum(const mat&    X,
                      mat  computeGradient(const mat& X, const mat& y, const mat& theta),
                      string file_name ,
                      int batch_size,
-                     int iterations)
+                     int iterations,
+                     double bita) // 0.9
 {
-	double bita = .9;
-
-	int it=0;
 	int m,n;
 	m = Y.n_rows;
 	n = theta.n_elem;
-	mat M(n,1),dg,gradient;
+	mat M(n,1),gradient;
 
 	M.zeros(); 
 
@@ -22,8 +20,8 @@ void momentum(const mat&    X,
 	while(iterations--)
 	{
 		//  Select Batch
-		int p=it%m,q=(it+batch_size)%m ; 
-		if(p>q){it++;continue;}
+		int p=iterations%m,q=(iterations+batch_size)%m ; 
+		if(p>q){iterations++;continue;}
 
 		mat x=X.rows(p, q) , y= Y.rows(p ,q);
 

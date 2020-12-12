@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "rapidcsv/rapidcsv.h"
+#include "includes/rapidcsv.h"
 #include "algorithms/GradientDescent.h"
 
 using namespace std;
@@ -72,7 +72,7 @@ void test(int np)
 
 	mat theta = arma::zeros<vec>(PQ(np).size());
 
-	gradientDescent(X, y, theta,logisticCost, logisticGradient, "Nonlinear-Transformation_Gradient-Descent_microchips-Q"+to_string(np),1,"0.01",1e-5) ;
+	gradientDescent(X, y, theta,logisticCost, logisticGradient, "Nonlinear-Transformation_Gradient-Descent_microchips-Q"+to_string(np),1,"0.01",1e-15) ;
 
 	// theta.print("Theta found :"); 
 }

@@ -1,5 +1,11 @@
+#pragma GCC diagnostic ignored "-Wreturn-type"
+#pragma GCC diagnostic ignored "-Wformat-security"
+
+
 #include <armadillo>
-#include <iostream>
+#include <bits/stdc++.h>
+#include "../includes/conio.h"
+
 
 using namespace std;
 using namespace arma;
@@ -8,7 +14,9 @@ using namespace arma;
 
 double LeastSquaesCost(const mat& X, const mat& y, const mat& parameters)
 {
-	double s= accu((pow(((X*parameters)-y), 2)));
+    vec tmp(X*parameters-y);
+    tmp = dot(tmp,tmp);
+	double s= sum(tmp);
 	return s/y.n_rows;
 }
 
@@ -33,11 +41,9 @@ double logisticCost(const mat& X, const mat& y, const mat& parameters)
 	int DATA_SIZE = X.n_rows;
     for(int i=0;i<DATA_SIZE;i++)
     {
-    	vec e = parameters;
-    	vec v = X.row(i)*e;
-
-        double temp = as_scalar(v);
+        double temp = as_scalar(X.row(i)*parameters);
         loss = loss + -1*log(1/(1+exp(-1*temp*y(i))));
+        // loss -= y(i)*log(sigmoid(temp)) +(1-y(i))*log(1-sigmoid(temp)); 
     }
     loss = loss/DATA_SIZE;
     return loss;
@@ -52,13 +58,16 @@ mat logisticGradient(const mat& X, const mat& y, const mat& parameters)
     {
         double w_x = as_scalar(X.row(i)*parameters);
 
-	    double temp0 = (1/(1+std::exp(y[i]*w_x)))*(-1*y[i]);
+	    double temp0 = (1/(1+std::exp(y[i]*w_x)))*(-y[i]);
         gradient += trans(X.row(i)*temp0);
     }
 
     gradient = gradient/DATA_SIZE;
 
     return gradient;
+
+    // int m= X.n_rows;
+    // return 2*arma::trans(X)*(sigmoid(X*parameters)-y)/m;
 }
 
 
