@@ -22,9 +22,11 @@ ofstream f;
 
 void perceptron(const mat X,const mat y,mat& theta,string file_name)
 {
-	int t=1 , n = X.n_rows;
+	int t=1 , n = X.n_cols;
+
 	theta.reshape(n,1);
 	theta.zeros();
+
 	mat l(1,1),_l =zeros<vec>(1) ;
 
 	mat e = Ls(X,y,theta) ;

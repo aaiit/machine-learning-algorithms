@@ -36,7 +36,7 @@ mat transformation(mat x, int np)
 
 			pair<int, int> ppqq = pq[j];
 			int p = ppqq.first , q = ppqq.second;
-			X(i, j) = pow(x[0], p) * pow(x[1], q);
+			X(i, j) = pow(x[1], p) * pow(x[2], q);
 		}
 	}
 	return X;
@@ -55,9 +55,11 @@ int main(int argc, char const *argv[])
 
 	csv_to_xy("data/microchips.csv", {"x", "y"}, "z", X, y);
 
+	X= transformation(X,np);
 
+	X.print("new X");
 
-	gradientDescent(transformation(X,np), y, theta, logisticCost, logisticGradient, "Nonlinear-Q" + to_string(np), "0.001") ;
+	gradientDescent(X, y, theta, logisticCost, logisticGradient, "Nonlinear-Q" + to_string(np), "armijo") ;
 
 	theta.print("Theta found :");
 	return 0;

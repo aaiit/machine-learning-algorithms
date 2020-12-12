@@ -14,7 +14,7 @@ void gradientDescent(const mat&    X,
 	int it = 0;
 	int m, n;
 	m = y.n_rows;
-	n = parameters.n_elem;
+	n = X.n_cols;
 	
 	parameters.reshape(n,1);
 	parameters.zeros();

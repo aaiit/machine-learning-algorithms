@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
 	// Third case :theta initialized by Gaussian/normal distribution with μ = 0 and σ = 1
 	theta.randn();
 
-
+	// X.print("X :");
 
 	gradientDescent(X, y, theta,logisticCost, logisticGradient, "binary_zero","0.001") ;
 

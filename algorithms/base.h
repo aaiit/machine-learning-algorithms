@@ -44,7 +44,7 @@ double logisticCost(const mat& X, const mat& y, const mat& parameters)
     {
         double temp = as_scalar(X.row(i) * parameters);
 
-        loss -= y(i) * log(sigmoid(temp)) + (1 - y(i)) * log(1 - sigmoid(temp));
+        loss -= y[i] * log(sigmoid(temp)) + (1 - y[i]) * log(1 - sigmoid(temp));
     }
 
     return loss / m;
@@ -85,8 +85,8 @@ void csv_to_xy(string training_data, vector<string> x_labels, string y_label , m
 
     cout << "n" << n << endl;
 
-    vector<float> c[n + 1];
-    for (int i = 0; i < n; i++) c[i] = doc.GetColumn<float>(x_labels[i]);
+    vector<double> c[n + 1];
+    for (int i = 0; i < n; i++) c[i] = doc.GetColumn<double>(x_labels[i]);
 
 
     int m = c[0].size();
@@ -103,6 +103,6 @@ void csv_to_xy(string training_data, vector<string> x_labels, string y_label , m
         }
     }
 
-    c[n] = doc.GetColumn<float>(y_label);
+    c[n] = doc.GetColumn<double>(y_label);
     for (int j = 0; j < m; j++)y[j] = c[n][j];
 }
