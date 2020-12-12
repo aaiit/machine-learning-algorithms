@@ -11,7 +11,7 @@
 <tr>
     <td><img src="data_png/microchips_deg1.png" width=270 height=100></td>
     <td><img src="data_png/microchips_deg2.png" width=270 height=100></td>
-    <td><img src="data_png/microchips_deg4.png" width=270 height=100></td>
+    <td><img src="data_png/microchips_deg3.png" width=270 height=100></td>
   </tr>
   <tr>
     <td><img src="data_png/microchips_deg5.png" width=270 height=100></td>

@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 {
 
 	mat X, y ,theta;
-	csv_to_xy("data/binary.csv", {"gre" ,"gpa"}, "admit", X, y);
+	csv_to_xy("data/binary.csv", {"gre" ,"gpa","rank"}, "admit", X, y);
 
 
 	// Fist case :theta initialized by zeros

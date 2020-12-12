@@ -65,8 +65,8 @@ void gradientDescent(const mat&    X,
 			// when escape is pressed
 			if (int(ch) == 27)
 				break;
-			if (ch == '+')alpha *= 2;
-			if (ch == '-')alpha /= 2;
+			if (ch == '+')alpha *= 1.2;
+			if (ch == '-')alpha /= 1.2;
 
 		}
 
