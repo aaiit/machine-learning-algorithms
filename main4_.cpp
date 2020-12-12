@@ -57,8 +57,6 @@ int main(int argc, char const *argv[])
 
 	X= transformation(X,np);
 
-	// X.print("new X");
-
 	gradientDescent(X, y, theta, logisticCost, logisticGradient, "Nonlinear-Q" + to_string(np), "0.1") ;
 
 	theta.print("Theta found :");
