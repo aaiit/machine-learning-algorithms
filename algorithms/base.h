@@ -58,17 +58,18 @@ mat logisticGradient(const mat& X, const mat& y, const mat& parameters)
 
 }
 
-// mat logisticHessian(const mat& X, const mat& y, const mat& parameters)
-// {
-//     int m = y.n_rows;
-//     mat D(m, m); D.zeros();
-//     for (int i = 0; i < m; i++) 
-//     {
-//         double z = as_scalar(X.row(i) * parameters);
-//         D(i, i) = ;
-//     }
-//     return X * trans(X) * phi * (1 - phi);
-// }
+mat logisticHessian(const mat& X, const mat& y, const mat& parameters)
+{
+    int m = y.n_rows;
+    mat D(m, m); D.zeros();
+    for (int i = 0; i < m; i++) 
+    {
+        double z = as_scalar(X.row(i) * parameters);
+        D(i, i) = sigmoid(-z)*(1-sigmoid(-z));
+    }
+    return trans(X) * D *X ;
+}
+
 double armijo(const mat& X, const mat& y, const mat& parameters, mat gradient, double computeCost(const mat& X, const mat& y, const mat& parameters)
              ) {
     // Armijo Hyperparameters

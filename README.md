@@ -39,16 +39,21 @@ TODO : change logistic fonction
 ## Command line
 	g++ main_exemple.cpp -o bin/exe -llapack -lblas -larmadillo
 
+
+## Regression 
+  main2.1 & main2.3 
+## Polynomial regression
+  main3
+## Logistic regression 
+  main2.2 & main4
+## Binary classification
+  main1.1 & main1.2 & main1.3
+
+
 ## Algorithms
-
 # Perceptron 
-
 # Adaline
-
 # Pocket
-
 # Gradient Descent
-
 # Gradient Descent Stochastic
-
 # Momentum
