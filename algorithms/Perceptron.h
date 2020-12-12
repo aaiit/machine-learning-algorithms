@@ -1,5 +1,6 @@
 #include <armadillo>
 #include <iostream>
+#include "base.h"
 
 using namespace std;
 using namespace arma;
@@ -21,8 +22,9 @@ ofstream f;
 
 void perceptron(const mat X,const mat y,mat& theta,string file_name)
 {
-	theta.zeros();
 	int t=1 , n = X.n_rows;
+	theta.reshape(n,1);
+	theta.zeros();
 	mat l(1,1),_l =zeros<vec>(1) ;
 
 	mat e = Ls(X,y,theta) ;

@@ -29,27 +29,10 @@ int main(int argc, char const *argv[])
 	cout<<"NP : "<<endl;
 	cin>>np;
 
-	rapidcsv::Document doc("data/pressure.csv");
 
-  	vector<float> c1 = doc.GetColumn<float>("temperature");
-  	vector<float> c2 = doc.GetColumn<float>("pressure");
+	mat X, y,theta;
 
-  	int m= c1.size();
-	
-	mat X(m, np),x(m,1);  
-	for(int i=0;i<m;i++)
-	{
-		x[i]=c1[i];  
-	} 
-
-	X=phi(x,np);
-
-    mat y(m, 1);
-
-	for(int i=0;i<m;i++)y[i]=c2[i]; 
-
-	mat theta = arma::zeros<vec>(np+1);
-
+	csv_to_xy("data/pressure.csv", {"temperature" }, "pressure", X, y);
 
 	gradientDescent(X, y, theta,LeastSquaesCost,LeastSquaesGradient, "pressure_p"+to_string(np),1,"armijo",1e-5) ;
 

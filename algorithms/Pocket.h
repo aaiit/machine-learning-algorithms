@@ -1,5 +1,6 @@
 #include <armadillo>
 #include <iostream>
+#include "base.h"
 
 #define pp(x) cout<<#x<<" : "<<x.n_rows<<"#"<<x.n_cols<<endl;
 
@@ -21,8 +22,11 @@ mat Ls(mat X,mat y,mat theta)
 
 void pocket(const mat X,const mat y,mat& theta,string file_name)
 {
-	theta.randu();
 	int t=1 , n = X.n_rows;
+
+	theta.reshape(n,1);
+	theta.zeros();
+
 	mat l1,l2 ;
 
 	mat e = Ls(X,y,theta) ;

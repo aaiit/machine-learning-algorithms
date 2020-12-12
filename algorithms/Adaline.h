@@ -1,5 +1,6 @@
 #include <armadillo>
 #include <iostream>
+#include "base.h"
 
 using namespace std;
 using namespace arma;
@@ -16,8 +17,10 @@ mat Ls(const mat& X, const mat& y, const mat& theta)
 }
 void adaline(const mat X,const mat y, mat& theta,const string file_name,const int Tmax)
 {
-	theta.randu();
+
 	int t=1 , n = X.n_rows;
+	theta.reshape(n,1);
+	theta.zeros();
 	mat l ;
 
 	vector<double> J_history;
