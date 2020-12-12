@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 {
 
 	mat X, y ,theta;
-	csv_to_xy("data/binary.csv", {"admit" ,"gre" ,"gpa"}, "rank", X, y);
+	csv_to_xy("data/binary.csv", {"gre" ,"gpa"}, "admit", X, y);
 
 
 	// Fist case :theta initialized by zeros
@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
 
 	// X.print("X :");
 
-	gradientDescent(X, y, theta,logisticCost, logisticGradient, "binary_zero","0.001") ;
+	gradientDescent(X, y, theta,logisticCost, logisticGradient, "binary_zero+rank","0.01") ;
 
 
 	theta.print("Theta found by logistic gradient descent") ;

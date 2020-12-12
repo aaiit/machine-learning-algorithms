@@ -42,9 +42,9 @@ double logisticCost(const mat& X, const mat& y, const mat& parameters)
     int m = X.n_rows;
     for (int i = 0; i < m; i++)
     {
-        double temp = as_scalar(X.row(i) * parameters);
+        double z = as_scalar(X.row(i) * parameters);
 
-        loss -= y[i] * log(sigmoid(temp)) + (1 - y[i]) * log(1 - sigmoid(temp));
+        loss -= y[i] * log(sigmoid(-z)) + (1 - y[i]) * log(1 - sigmoid(-z));
     }
 
     return loss / m;
@@ -58,7 +58,17 @@ mat logisticGradient(const mat& X, const mat& y, const mat& parameters)
 
 }
 
-
+// mat logisticHessian(const mat& X, const mat& y, const mat& parameters)
+// {
+//     int m = y.n_rows;
+//     mat D(m, m); D.zeros();
+//     for (int i = 0; i < m; i++) 
+//     {
+//         double z = as_scalar(X.row(i) * parameters);
+//         D(i, i) = ;
+//     }
+//     return X * trans(X) * phi * (1 - phi);
+// }
 double armijo(const mat& X, const mat& y, const mat& parameters, mat gradient, double computeCost(const mat& X, const mat& y, const mat& parameters)
              ) {
     // Armijo Hyperparameters
@@ -99,7 +109,7 @@ void csv_to_xy(string training_data, vector<string> x_labels, string y_label , m
     {
         X(j, 0) = 1;
         for (int i = 0; i < n; i++) {
-            X(j, i+1) = c[i][j];
+            X(j, i + 1) = c[i][j];
         }
     }
 

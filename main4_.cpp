@@ -36,7 +36,7 @@ mat transformation(mat x, int np)
 
 			pair<int, int> ppqq = pq[j];
 			int p = ppqq.first , q = ppqq.second;
-			X(i, j) = pow(x[1], p) * pow(x[2], q);
+			X(i, j) = pow(x(i,1), p) * pow(x(i,2), q);
 		}
 	}
 	return X;
@@ -57,9 +57,9 @@ int main(int argc, char const *argv[])
 
 	X= transformation(X,np);
 
-	X.print("new X");
+	// X.print("new X");
 
-	gradientDescent(X, y, theta, logisticCost, logisticGradient, "Nonlinear-Q" + to_string(np), "armijo") ;
+	gradientDescent(X, y, theta, logisticCost, logisticGradient, "Nonlinear-Q" + to_string(np), "0.1") ;
 
 	theta.print("Theta found :");
 	return 0;

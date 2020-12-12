@@ -15,10 +15,10 @@ void gradientDescent(const mat&    X,
 	int m, n;
 	m = y.n_rows;
 	n = X.n_cols;
-	
-	parameters.reshape(n,1);
-	parameters.zeros();
-	
+
+	parameters.reshape(n, 1);
+	parameters.randu();
+
 	mat gradient(n, 1), error;
 	gradient.ones();
 
@@ -29,15 +29,15 @@ void gradientDescent(const mat&    X,
 	mat testing_y = y.rows(training_size, m - 1);
 
 	vector<double> training_error_history , testing_error_history;
+	double alpha = atof(step.c_str());
 	do
 	{
 		it++; _parameters = parameters;
 
 		gradient = computeGradient(X, y, parameters) ;
 
-		double  alpha;
+
 		if (step == "armijo") alpha =  armijo(X, y, parameters, gradient, computeCost);
-		else alpha = atof(step.c_str());
 
 
 		parameters = parameters - alpha * gradient ;
@@ -65,6 +65,8 @@ void gradientDescent(const mat&    X,
 			// when escape is pressed
 			if (int(ch) == 27)
 				break;
+			if (ch == '+')alpha *= 2;
+			if (ch == '-')alpha /= 2;
 
 		}
 
