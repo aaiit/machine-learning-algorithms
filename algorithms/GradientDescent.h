@@ -44,9 +44,14 @@ void gradientDescent(const mat&    X,
 
 		error = computeCost(X, y, parameters);
 
-
-		error.print("training error (" + to_string(it) + "): ");
-		cout << "alpha : " << alpha << endl;
+		if (it % 1000 == 0)
+		{	
+			// clrscr();
+			error.print("training error (" + to_string(it) + "): ");
+			cout << "alpha : " << alpha << endl;
+			cout << "escape : Stop a while loop" << endl;
+			if (step != "armijo")cout << "+ : increase alpha \n- : decrease alpha" << endl;
+		}
 
 
 		training_error_history.push_back(error[0]);
@@ -63,8 +68,7 @@ void gradientDescent(const mat&    X,
 			char ch = getch();
 			// Terminates the loop
 			// when escape is pressed
-			if (int(ch) == 27)
-				break;
+			if (int(ch) == 27)break;
 			if (ch == '+')alpha *= 1.2;
 			if (ch == '-')alpha /= 1.2;
 
@@ -75,13 +79,12 @@ void gradientDescent(const mat&    X,
 	ofstream coutput_file("costs/training-error_" + file_name);
 	for (const auto &e : training_error_history) coutput_file << e << " ";
 
-	coutput_file = ofstream("costs/testing-error_" + file_name);
-	for (const auto &e : testing_error_history) coutput_file << e << " ";
+	// coutput_file = ofstream("costs/testing-error_" + file_name);
+	// for (const auto &e : testing_error_history) coutput_file << e << " ";
 
 	ofstream Woutput_file("W/" + file_name);
 	for (const auto &e : parameters) Woutput_file << e << " ";
 
-	cout << "END" << endl;
 
 }
 

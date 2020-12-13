@@ -1,3 +1,10 @@
+#pragma once
+#ifndef BASE_H
+#define BASE_H
+
+
+
+
 #pragma GCC diagnostic ignored "-Wreturn-type"
 #pragma GCC diagnostic ignored "-Wformat-security"
 
@@ -117,3 +124,4 @@ void csv_to_xy(string training_data, vector<string> x_labels, string y_label , m
     c[n] = doc.GetColumn<double>(y_label);
     for (int j = 0; j < m; j++)y[j] = c[n][j];
 }
+#endif // BASE_H

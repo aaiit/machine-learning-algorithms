@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include "algorithms/GradientDescent.h"
+#include "algorithms/Newton.h"
+
 
 using namespace std;
 
@@ -12,7 +14,7 @@ int main(int argc, char const *argv[])
 
 	mat X, y ,theta;
 	csv_to_xy("data/binary.csv", {"gre" ,"gpa","rank"}, "admit", X, y);
-
+	// csv_to_xy("data/binary.csv", {"gre" ,"gpa"}, "admit", X, y);
 
 	// Fist case :theta initialized by zeros
 	// theta.zeros();
@@ -25,10 +27,11 @@ int main(int argc, char const *argv[])
 
 	// X.print("X :");
 
-	gradientDescent(X, y, theta,logisticCost, logisticGradient, "binary_zero+rank","0.01") ;
+	gradientDescent(X, y, theta,logisticCost, logisticGradient, "binary_rank","armijo") ;
+	// newton(X, y, theta, logisticCost, logisticGradient,logisticHessian, "newton_binary")  ;
 
 
-	theta.print("Theta found by logistic gradient descent") ;
+	theta.print("Theta found") ;
 	
 
 

@@ -23,15 +23,18 @@
  </table>
  
 <!-- 
+  
 git add -A; git commit -m "moon" ; git push
 
 https://towardsdatascience.com/10-gradient-descent-optimisation-algorithms-86989510b5e9
 
-costs : typeerror-/problemName-AlgorithmName-nameofdata
+
+bfgs https://koriavinash1.github.io/ai/optimization/svm/Unconstrained-Optimization/
 
 
-TODO : change logistic fonction
-		fix tp 4
+
+C H  : https://stats.stackexchange.com/questions/68391/hessian-of-logistic-function
+
 -->
 ## Requirements
 	The implementation of logistic regression based on Armadillo library
@@ -51,9 +54,11 @@ TODO : change logistic fonction
 
 
 ## Algorithms
+
 # Perceptron 
 # Adaline
 # Pocket
 # Gradient Descent
 # Gradient Descent Stochastic
+# Newton
 # Momentum
