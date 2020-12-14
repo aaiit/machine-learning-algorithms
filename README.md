@@ -16,11 +16,11 @@ C H  : https://stats.stackexchange.com/questions/68391/hessian-of-logistic-funct
 
 As of today, the following algorithms have been implemented:
 
-- [x]  Perceptron 
-- [x]  Adaline
-- [x]  Pocket
+- [x]  [Perceptron](algorithms/Perceptron.h)
+- [x]  [Adaline](algorithms/Adaline.h)
+- [x]  [Pocket](algorithms/Pocket.h)
 
-- [x]  Gradient Descent
-- [x]  Gradient Descent Stochastic
-- [x]  Newton
-- [x]  Momentum
+- [x]  [Gradient Descent](algorithms/GradientDescent.h)
+- [x]  [Gradient Descent Stochastic](algorithms/GradientDescentStochastic.h)
+- [x]  [Newton](algorithms/Newton.h)
+- [x]  [Momentum](algorithms/Momentum.h)
