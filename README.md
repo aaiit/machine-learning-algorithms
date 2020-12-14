@@ -2,6 +2,7 @@
 	Implementing some algorithms of machine learning used to solve classification and regression tasks
 ## Requirements
 	The implementation based on Armadillo library
+	$ sudo apt-get install libarmadillo-dev
 
 ## Command line
 	$ git clone https://github.com/aaiit/machine-learning-algorithms.git
@@ -19,7 +20,17 @@ As of today, the following algorithms have been implemented:
 - [x]  [Gradient Descent](algorithms/GradientDescent.h)
 - [x]  [Gradient Descent Stochastic](algorithms/GradientDescentStochastic.h)
 - [x]  [Newton](algorithms/Newton.h)
+- [ ]  Quasi-Newton
 - [x]  [Momentum](algorithms/Momentum.h)
+- [ ]  AdaGrad
+- [ ]  RMSprop
+- [ ]  Adadelta
+- [ ]  NAG
+- [ ]  Adam
+- [ ]  AdaMax
+- [ ]  Nadam
+- [ ]  AMSGrad
+
 <!--
 ## References
 1. https://towardsdatascience.com/10-gradient-descent-optimisation-algorithms-86989510b5e9
