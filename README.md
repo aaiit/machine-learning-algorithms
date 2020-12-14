@@ -7,7 +7,7 @@
 ## Command line
 	$ git clone https://github.com/aaiit/machine-learning-algorithms.git
 	$ cd machine-learning-algorithms
-	$ g++ main_exemple.cpp -o bin/exe -llapack -lblas -larmadillo
+	$ g++ exemples/main****.cpp -o bin/exe -llapack -lblas -larmadillo
 
 ## What is included?
 
