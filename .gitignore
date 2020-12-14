@@ -5,5 +5,5 @@ py/*
 W/*
 rl.cpp
 algorithms/ok.png
-data_png
+data_png/*
 KK.cpp
