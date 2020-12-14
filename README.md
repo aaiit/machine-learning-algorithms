@@ -1,11 +1,7 @@
-<!-- 
-git add -A; git commit -m "moon" ; git push
-https://towardsdatascience.com/10-gradient-descent-optimisation-algorithms-86989510b5e9
-bfgs https://koriavinash1.github.io/ai/optimization/svm/Unconstrained-Optimization/
-C H  : https://stats.stackexchange.com/questions/68391/hessian-of-logistic-function
--->
+## What is it?
+	Implementing some algorithms of machine learning used to solve classification and regression tasks
 ## Requirements
-	The implementation of logistic regression based on Armadillo library
+	The implementation based on Armadillo library
 
 ## Command line
 	$ git clone https://github.com/aaiit/machine-learning-algorithms.git
@@ -24,3 +20,12 @@ As of today, the following algorithms have been implemented:
 - [x]  [Gradient Descent Stochastic](algorithms/GradientDescentStochastic.h)
 - [x]  [Newton](algorithms/Newton.h)
 - [x]  [Momentum](algorithms/Momentum.h)
+<!--
+## References
+1. https://towardsdatascience.com/10-gradient-descent-optimisation-algorithms-86989510b5e9
+2. https://koriavinash1.github.io/ai/optimization/svm/Unconstrained-Optimization/
+3. https://stats.stackexchange.com/questions/68391/hessian-of-logistic-function
+3.
+4.
+
+-->
