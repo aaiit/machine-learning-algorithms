@@ -1,9 +1,12 @@
+#include "base.h"
+
 void momentum(const mat&    X,
                      const mat&    Y,
                      mat&    theta,
                      mat  computeCost(const mat& X, const mat& y, const mat& theta),
                      mat  computeGradient(const mat& X, const mat& y, const mat& theta),
-                     string file_name ,
+                     string costs_file = "costs",
+                     string parameters_file = "parameters",
                      int batch_size,
                      int iterations,
                      double bita) // 0.9
@@ -36,10 +39,10 @@ void momentum(const mat&    X,
 		J_history.push_back(J[0]);
 	
 	}
-	ofstream output_file("costs/training-error_"+file_name);
+	ofstream output_file(costs_file);
     for (const auto &e : J_history) output_file << e << " ";
 
-	ofstream Woutput_file("W/"+file_name);
+	ofstream Woutput_file(parameters_file);
 	for (const auto &e : theta) Woutput_file << e << " ";
 }
 

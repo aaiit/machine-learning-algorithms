@@ -6,10 +6,10 @@ void newton(const mat&    X,
             double  computeCost(const mat& X, const mat& y, const mat& parameters),
             mat  computeGradient(const mat& X, const mat& y, const mat& parameters),
             mat  computeHessian(const mat& X, const mat& y, const mat& parameters),
-            string file_name = "temp",
+            string costs_file = "costs",
+            string parameters_file = "parameters",
             double tol = 1e-10)
 {
-	mat _parameters;
 
 	int it = 0;
 	int m, n;
@@ -25,13 +25,13 @@ void newton(const mat&    X,
 	vector<double> training_error_history ;
 	do
 	{
-		it++; _parameters = parameters;
+		it++;
 
 		gradient = computeGradient(X, y, parameters) ;
 
 
 
-		parameters = parameters -  inv(computeHessian(X, y, parameters))*gradient;
+		parameters = parameters -  inv(computeHessian(X, y, parameters)) * gradient;
 
 		error = computeCost(X, y, parameters);
 
@@ -54,16 +54,15 @@ void newton(const mat&    X,
 
 		}
 
-	} while (norm(parameters - _parameters) > tol );
+	} while (norm(gradient) > tol );
 
-	ofstream coutput_file("costs/training-error_" + file_name);
+	ofstream coutput_file(costs_file);
 	for (const auto &e : training_error_history) coutput_file << e << " ";
 
 
-	ofstream Woutput_file("W/" + file_name);
+	ofstream Woutput_file(parameters_file);
 	for (const auto &e : parameters) Woutput_file << e << " ";
 
-	cout << "END" << endl;
 
 }
 

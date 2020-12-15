@@ -1,9 +1,12 @@
+#include "base.h"
+
 void stochasticgradientdescent(const mat&    X,
                                const mat&    Y,
                                mat&    parameters,
                                mat  computeCost(const mat& X, const mat& y, const mat& parameters),
                                mat  computeGradient(const mat& X, const mat& y, const mat& parameters),
-                               string file_name ,
+                               string costs_file = "costs",
+                               string parameters_file = "parameters",
                                int batch_size,
                                int iterations)
 {
@@ -34,10 +37,10 @@ void stochasticgradientdescent(const mat&    X,
 	}
 
 
-	ofstream output_file("costs/training-error_" + file_name);
+	ofstream output_file(costs_file);
 	for (const auto &e : J_history) output_file << e << " ";
 
-	ofstream Woutput_file("W/" + file_name);
+	ofstream Woutput_file(parameters_file);
 	for (const auto &e : parameters) Woutput_file << e << " ";
 }
 
