@@ -20,7 +20,8 @@ mat Ls(mat X,mat y,mat theta)
 
 ofstream f;
 
-void perceptron(const mat X,const mat y,mat& theta,string file_name)
+void perceptron(const mat X,const mat y,mat& theta,int Tmax = 100,string costs_file = "costs",
+                     string parameters_file = "parameters",)
 {
 	int t=1 , n = X.n_cols;
 
@@ -52,11 +53,11 @@ void perceptron(const mat X,const mat y,mat& theta,string file_name)
 
 	}//while(abs((l-_l)[0])> 0.00001);
 
-	f = ofstream("costs/"+file_name);
+	f = ofstream(costs_file);
 	for (const auto &e : J_history) f << e << " ";
 		
 
-	f = ofstream("W/"+file_name);
+	f = ofstream(parameters_file);
 	for (const auto &e : theta) f << e << " ";
 
 }

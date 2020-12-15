@@ -8,5 +8,5 @@ algorithms/_.png
 plots
 KK.cpp
 *.png
-examples
+examples/*
 !exemples/demo_readcsv.cpp

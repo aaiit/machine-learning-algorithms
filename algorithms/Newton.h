@@ -3,9 +3,9 @@
 void newton(const mat&    X,
             const mat&    y,
             mat&    parameters,
-            double  computeCost(const mat& X, const mat& y, const mat& parameters),
-            mat  computeGradient(const mat& X, const mat& y, const mat& parameters),
-            mat  computeHessian(const mat& X, const mat& y, const mat& parameters),
+            double  computeCost(const mat& X, const mat& y, const mat& parameters), // LeastSquaesCost or logisticCost
+            mat  computeGradient(const mat& X, const mat& y, const mat& parameters), // LeastSquaesGradient or logisticGradient
+            mat  computeHessian(const mat& X, const mat& y, const mat& parameters), //  logisticHessian or 
             string costs_file = "costs",
             string parameters_file = "parameters",
             double tol = 1e-10)

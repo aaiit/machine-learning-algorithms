@@ -15,7 +15,8 @@ mat Ls(const mat& X, const mat& y, const mat& theta)
 	J = sum((pow(((X*theta)-y), 2))/m) ;
 	return J;
 }
-void adaline(const mat X,const mat y, mat& theta,const string file_name,const int Tmax)
+void adaline(const mat X,const mat y, mat& theta,const string file_name,const int Tmax ,string costs_file = "costs",
+                     string parameters_file = "parameters",)
 {
 
 	int t=1 , n = X.n_rows;
@@ -39,11 +40,11 @@ void adaline(const mat X,const mat y, mat& theta,const string file_name,const in
 		J_history.push_back(Ls(X,y,theta)[0]);
 	}
 
-	ofstream coutput_file("costs/"+file_name);
+	ofstream coutput_file(costs_file);
 	for (const auto &e : J_history) coutput_file << e << " ";
 		
 
-	ofstream Woutput_file("W/"+file_name);
+	ofstream Woutput_file(parameters_file);
 	for (const auto &e : theta) Woutput_file << e << " ";
 
 }

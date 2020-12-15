@@ -3,16 +3,19 @@
 void adagrad(const mat&    X,
                      const mat&    Y,
                      mat&    theta,
-                     mat  computeCost(const mat& X, const mat& y, const mat& theta),
-                     mat  computeGradient(const mat& X, const mat& y, const mat& theta),
+                     double  computeCost(const mat& X, const mat& y, const mat& parameters), // LeastSquaesCost or logisticCost
+                     mat  computeGradient(const mat& X, const mat& y, const mat& parameters), // LeastSquaesGradient or logisticGradient
                      string costs_file = "costs",
                      string parameters_file = "parameters",
                      int batch_size,
-                     int iterations)
+                     int iterations,
+                     double alpha =.001,
+                     double ep = 1e-7 // the fuzz factor
+                  )
 {
 	
-	double alpha = .001 ;
-	double ep = 1e-7; // the fuzz factor
+	// double alpha = .001 ;
+	// double ep = 1e-7; 
 
 
 	int it=0;
@@ -46,10 +49,10 @@ void adagrad(const mat&    X,
 		J_history.push_back(J[0]);
 	
 	}
-	ofstream output_file("costs/training-error_"+file_name);
+	ofstream output_file(costs_file);
     for (const auto &e : J_history) output_file << e << " ";
 
-	ofstream Woutput_file("W/"+file_name);
+	ofstream Woutput_file(parameters_file);
 	for (const auto &e : theta) Woutput_file << e << " ";
 }
 

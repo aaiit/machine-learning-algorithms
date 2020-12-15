@@ -2,7 +2,6 @@
 #include <iostream>
 #include "base.h"
 
-#define pp(x) cout<<#x<<" : "<<x.n_rows<<"#"<<x.n_cols<<endl;
 
 using namespace std;
 using namespace arma;
@@ -20,7 +19,8 @@ mat Ls(mat X,mat y,mat theta)
     return loss / n;
 }
 
-void pocket(const mat X,const mat y,mat& theta,string file_name)
+void pocket(const mat X,const mat y,mat& theta,string costs_file = "costs",
+                     string parameters_file = "parameters",)
 {
 	int t=1 , n = X.n_rows;
 
@@ -61,11 +61,11 @@ void pocket(const mat X,const mat y,mat& theta,string file_name)
 
 	}
 
-	ofstream coutput_file("costs/"+file_name);
+	ofstream coutput_file(costs_file);
 	for (const auto &e : J_history) coutput_file << e << " ";
 		
 
-	ofstream Woutput_file("W/"+file_name);
+	ofstream Woutput_file(parameters_file);
 	for (const auto &e : theta) Woutput_file << e << " ";
 
 }

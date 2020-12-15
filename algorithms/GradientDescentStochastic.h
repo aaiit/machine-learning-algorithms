@@ -3,8 +3,8 @@
 void stochasticgradientdescent(const mat&    X,
                                const mat&    Y,
                                mat&    parameters,
-                               mat  computeCost(const mat& X, const mat& y, const mat& parameters),
-                               mat  computeGradient(const mat& X, const mat& y, const mat& parameters),
+                               double  computeCost(const mat& X, const mat& y, const mat& parameters), // LeastSquaesCost or logisticCost
+                               mat  computeGradient(const mat& X, const mat& y, const mat& parameters), // LeastSquaesGradient or logisticGradient
                                string costs_file = "costs",
                                string parameters_file = "parameters",
                                int batch_size,

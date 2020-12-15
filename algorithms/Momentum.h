@@ -3,13 +3,13 @@
 void momentum(const mat&    X,
                      const mat&    Y,
                      mat&    theta,
-                     mat  computeCost(const mat& X, const mat& y, const mat& theta),
-                     mat  computeGradient(const mat& X, const mat& y, const mat& theta),
+                     double  computeCost(const mat& X, const mat& y, const mat& parameters), // LeastSquaesCost or logisticCost
+                     mat  computeGradient(const mat& X, const mat& y, const mat& parameters), // LeastSquaesGradient or logisticGradient
                      string costs_file = "costs",
                      string parameters_file = "parameters",
                      int batch_size,
                      int iterations,
-                     double bita) // 0.9
+                     double bita = 0.9)
 {
 	int m,n;
 	m = Y.n_rows;
