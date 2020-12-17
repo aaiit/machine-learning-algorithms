@@ -77,6 +77,11 @@ mat logisticHessian(const mat& X, const mat& y, const mat& parameters)
     return trans(X) * D *X ;
 }
 
+mat LeastSquaesHessian(const mat& X, const mat& y, const mat& parameters)
+{
+    return 2*trans(X)*X;
+}
+
 double armijo(const mat& X, const mat& y, const mat& parameters, mat gradient, double computeCost(const mat& X, const mat& y, const mat& parameters)
              ) {
     // Armijo Hyperparameters
@@ -101,14 +106,11 @@ void csv_to_xy(string training_data, vector<string> x_labels, string y_label , m
 
     int n = x_labels.size();
 
-    cout << "n" << n << endl;
-
     vector<double> c[n + 1];
     for (int i = 0; i < n; i++) c[i] = doc.GetColumn<double>(x_labels[i]);
 
 
     int m = c[0].size();
-    cout << "m " << m << endl;
 
     X.reshape(m, n + 1);
     y.reshape(m, 1);

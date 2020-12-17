@@ -5,7 +5,7 @@ void newton(const mat&    X,
             mat&    parameters,
             double  computeCost(const mat& X, const mat& y, const mat& parameters), // LeastSquaesCost or logisticCost
             mat  computeGradient(const mat& X, const mat& y, const mat& parameters), // LeastSquaesGradient or logisticGradient
-            mat  computeHessian(const mat& X, const mat& y, const mat& parameters), //  logisticHessian or 
+            mat  computeHessian(const mat& X, const mat& y, const mat& parameters), //  logisticHessian or
             string costs_file = "costs",
             string parameters_file = "parameters",
             double tol = 1e-10)
@@ -30,13 +30,25 @@ void newton(const mat&    X,
 		gradient = computeGradient(X, y, parameters) ;
 
 
+		H = computeHessian(X, y, parameters);
 
-		parameters = parameters -  inv(computeHessian(X, y, parameters)) * gradient;
+
+
+		double ep = 1e-15;
+		mat I = eye(n,n);
+		while (det(H) == 0)
+		{
+			H = ep*I +H;
+			ep*=2;
+		}
+
+
+		parameters = parameters -  inv(H) * gradient;
 
 		error = computeCost(X, y, parameters);
 
 
-		error.print("training error (" + to_string(it) + "): ");
+		error.print("error (" + to_string(it) + "): ");
 
 
 		training_error_history.push_back(error[0]);
