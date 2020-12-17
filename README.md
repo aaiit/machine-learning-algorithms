@@ -40,8 +40,8 @@ As of today, the following algorithms have been implemented:
 
 
 
-## [Report](https://docs.google.com/document/d/1tDZneH6ZPYIAbiMrY0CzOF6ZCR4k3EEQJaOPl8QeyXo/edit?usp=sharing)
 <!--
+## [Report](https://docs.google.com/document/d/1tDZneH6ZPYIAbiMrY0CzOF6ZCR4k3EEQJaOPl8QeyXo/edit?usp=sharing)
 ## References
 1. https://towardsdatascience.com/10-gradient-descent-optimisation-algorithms-86989510b5e9
 2. https://koriavinash1.github.io/ai/optimization/svm/Unconstrained-Optimization/
