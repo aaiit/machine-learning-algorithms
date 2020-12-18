@@ -5,8 +5,8 @@ void gradientDescent(const mat&    X,
                      mat&    parameters,
                      double  computeCost(const mat& X, const mat& y, const mat& parameters), // LeastSquaesCost or logisticCost
                      mat  computeGradient(const mat& X, const mat& y, const mat& parameters), // LeastSquaesGradient or logisticGradient
-                     string costs_file = "costs",
-                     string parameters_file = "parameters",
+                     string costs_file = "costs.out",
+                     string parameters_file = "parameters.out",
                      string step = "armijo", //  double as string like "0.01" by default armijo rule
                      double tol = 1e-10)
 {

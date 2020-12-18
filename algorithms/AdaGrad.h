@@ -5,8 +5,8 @@ void adagrad(const mat&    X,
                      mat&    theta,
                      double  computeCost(const mat& X, const mat& y, const mat& parameters), // LeastSquaesCost or logisticCost
                      mat  computeGradient(const mat& X, const mat& y, const mat& parameters), // LeastSquaesGradient or logisticGradient
-                     string costs_file = "costs",
-                     string parameters_file = "parameters",
+                     string costs_file = "costs.out",
+                     string parameters_file = "parameters.out",
                      int batch_size,
                      int iterations,
                      double alpha =.001,

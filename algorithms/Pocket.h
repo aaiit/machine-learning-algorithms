@@ -19,8 +19,8 @@ mat Ls(mat X,mat y,mat theta)
     return loss / n;
 }
 
-void pocket(const mat X,const mat y,mat& theta,string costs_file = "costs",
-                     string parameters_file = "parameters",)
+void pocket(const mat X,const mat y,mat& theta,string costs_file = "costs.out",
+                     string parameters_file = "parameters.out",)
 {
 	int t=1 , n = X.n_rows;
 

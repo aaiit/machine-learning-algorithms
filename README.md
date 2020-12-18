@@ -18,10 +18,10 @@ As of today, the following algorithms have been implemented:
 - [x]  [Perceptron](algorithms/Perceptron.h)
 - [x]  [Adaline](algorithms/Adaline.h)
 - [x]  [Pocket](algorithms/Pocket.h)
-- [ ]  Dual-Form Perceptron
+- [x]  [Dual-Form Perceptron](algorithms/dualPerceptron.h)
 
 
-# Quasi-Newton
+# [Quasi-Newton](algorithms/QuasiNewton.h)
 - [x]  BFGS 
 - [x]  Broyden
 - [x]  DFP

@@ -70,14 +70,7 @@ void quasinewton(const mat&    X,
 			H = H + (s - H * dg) * trans(s - H * dg) * inv(trans(s - H * dg) * dg);
 		}
 
-
-
-
-
-
 		H.print("H" + to_string(it) );
-
-
 
 		error = computeCost(X, y, parameters);
 		error.print("Error" + to_string(it) );
