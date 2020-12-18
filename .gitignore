@@ -3,10 +3,10 @@ costs
 error_png
 py
 W
-rl.cpp
 algorithms/_.png
 plots
 KK.cpp
 *.png
 examples/*
 !exemples/demo_readcsv.cpp
+*.cpp

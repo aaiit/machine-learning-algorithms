@@ -20,11 +20,11 @@ As of today, the following algorithms have been implemented:
 - [x]  [Dual-Form Perceptron](algorithms/dualPerceptron.h)
 
 
-# [Quasi-Newton](algorithms/QuasiNewton.h)
-- [x]  BFGS 
-- [x]  Broyden
-- [x]  DFP
-- [x]  SR1
+# Quasi-Newton
+- [x]  [BFGS](algorithms/QuasiNewton.h)
+- [x]  [Broyden](algorithms/QuasiNewton.h)
+- [x]  [DFP](algorithms/QuasiNewton.h)
+- [x]  [SR1](algorithms/QuasiNewton.h)
 
 # Stochastic Gradient
 - [x]  [Gradient Descent Stochastic](algorithms/GradientDescentStochastic.h)
