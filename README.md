@@ -19,6 +19,7 @@ As of today, the following algorithms have been implemented:
 - [x]  [Pocket](algorithms/Pocket.h)
 - [x]  [Dual-Form Perceptron](algorithms/dualPerceptron.h)
 
+- [ ]  [Neural Network](algorithms/NN.h)
 
 # Quasi-Newton
 - [x]  [BFGS](algorithms/QuasiNewton.h)

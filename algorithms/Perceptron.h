@@ -20,7 +20,7 @@ double Ls(mat X, mat y, mat theta)
 
 
 void perceptron(const mat X, const mat y, mat& theta, int Tmax = 100, string costs_file = "costs.out",
-                string parameters_file = "parameters.out",)
+                string parameters_file = "parameters.out")
 {
 	int t = 1 , n = X.n_cols;
 
@@ -29,8 +29,8 @@ void perceptron(const mat X, const mat y, mat& theta, int Tmax = 100, string cos
 
 	double l;
 
-	mat e = Ls(X, y, theta) ;
-	vector<double> J_history = {e[0]} ;
+	double e = Ls(X, y, theta) ;
+	vector<double> J_history = {e} ;
 
 	for (int t = 0; t <= Tmax ; t++)
 	{

@@ -15,7 +15,7 @@ mat Ls(const mat& X, const mat& y, const mat& theta)
 	J = sum((pow(((X*theta)-y), 2))/m) ;
 	return J;
 }
-void adaline(const mat X,const mat y, mat& theta,const string file_name,const int Tmax ,string costs_file = "costs",
+void adaline(const mat X,const mat y, mat& theta,const int Tmax ,string costs_file = "costs",
                      string parameters_file = "parameters",)
 {
 

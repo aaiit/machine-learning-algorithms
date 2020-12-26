@@ -65,6 +65,12 @@ mat logisticGradient(const mat& X, const mat& y, const mat& parameters)
 
 }
 
+mat logisticGradient2(const mat& X, const vec& y, const vec& y_pred)
+{
+    int m = X.n_rows;
+    return 2 * arma::trans(X) * (y_pred - y) / m;
+}
+
 mat logisticHessian(const mat& X, const mat& y, const mat& parameters)
 {
     int m = y.n_rows;

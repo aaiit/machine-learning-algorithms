@@ -9,4 +9,3 @@ KK.cpp
 *.png
 examples/*
 !exemples/demo_readcsv.cpp
-*.cpp
