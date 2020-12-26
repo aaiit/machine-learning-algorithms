@@ -1,5 +1,4 @@
-// #include "base.h"
-#define DG(v) cout<<#v<<" "<<v<<endl;
+#include "includes/conio.h"
 
 class NN
 {
@@ -9,7 +8,7 @@ class NN
 	int nf;
 	int m;
 	double alpha;
-	vec gradient;
+	vec g = ones<vec>(10);
 public:
 
 	mat X;
@@ -46,42 +45,56 @@ public:
 		for (auto w : Theta)x = w * x;
 		return x[0];
 	}
+	double Cost(const mat& y_pred)
+	{
 
-	void train()
+		return sum(dot(y - y_pred, (y - y_pred))) / m;
+	}
+	void train(int MAX_ITER, double tol = 1e-6)
 	{
 		int it = 0;
 
-		while (it < 500)
+		while (norm(g) > tol and it < MAX_ITER)
 		{
 			it++;
-
-			field<mat> a(nl+1);
+			cout << it << endl;
+			field<mat> a(nl);
 			field<mat> sign(nl);
 
 			a(0) = X.t();
 
-			for (int i = 0; i < nl-1; i++)
+			for (int i = 0; i < nl - 1; i++)
 			{
-				cout << "forward " << i << endl;
 				a(i + 1) = sigmoid(trans(Theta(i)) * a(i));
 			}
 
-
-
-			for (int i = nl ; i > 0; i--)
+			for (int i = nl - 1 ; i > 0; i--)
 			{
-				cout << "back " << i << endl;
-
-				if ( i == nl ) {sign(i) = trans(a(i+1)) - y;}
+				if ( i == nl - 1 ) {sign(i) = trans(a(i)) - y;}
 				else
 				{
-					sign(i) =   Theta(i)*sign(i + 1);
+					sign(i) =   sign(i + 1) * trans(Theta(i));
 				}
-				gradient = 2 * a(i - 1) * sign(i) / m;
-				// cout << "TS " << Theta(i).n_elem << endl;
-				Theta(i) = Theta(i) - 0.01 * gradient;
+				auto gradient = 2 * a(i - 1) * sign(i) / m;
+
+				if (i == nl - 1)g = gradient;
+
+				Theta(i - 1) = Theta(i - 1) - 0.01 * gradient;
+
 
 			}
+
+			// if ( kbhit() ) {
+			// 	char ch = getch();
+			// 	if (int(ch) == 27)break;
+			// 	if (ch == '+' )alpha *= 1.2;
+			// 	if (ch == '-' )alpha /= 1.2;
+
+			// }
+			
+			
+			// g.print("g :");
+			cout << "loss :" << Cost(trans(a(nl - 1))) << endl;
 		}
 	}
 };
