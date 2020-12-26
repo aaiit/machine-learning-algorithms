@@ -1,13 +1,13 @@
-#include "base.h"
+// #include "base.h"
 #define DG(v) cout<<#v<<" "<<v<<endl;
 
 class NN
 {
-	vector<vec> Theta;
+	field<mat> Theta;
 	vector<int> layers;
 	int nl;
 	int nf;
-
+	int m;
 	double alpha;
 	vec gradient;
 public:
@@ -20,49 +20,67 @@ public:
 		this->layers = layers;
 		nl = layers.size();
 
-		Theta.push_back(zeros<mat>(nf, layers[0]));
-
+		Theta = field<mat>(nl - 1);
 		for (int i = 0; i < nl - 1; i++)
 		{
-			Theta.push_back(zeros<mat>(layers[i], layers[i + 1]));
+			Theta(i) = mat(layers[i], layers[i + 1]).randu();
 		}
 
-		Theta.push_back(zeros<mat>(layers[nl], 1));
 
 	}
 	void setData(string dataset, vector<string> features , string label)
 	{
 		csv_to_xy(dataset, features, label, X, y);
 		nf = X.n_cols;
-
+		m = X.n_rows;
 	}
 
 	mat sigmoid(mat z) {
 		return 1 / (1 + exp(-z));
 	}
-
+	mat sigmoidGradient(mat z) {
+		return sigmoid(z) % (1 - sigmoid(z));
+	}
+	double predict(vec x)
+	{
+		for (auto w : Theta)x = w * x;
+		return x[0];
+	}
 
 	void train()
 	{
 		int it = 0;
 
-		while (it<500)
+		while (it < 500)
 		{
 			it++;
 
-			mat a[nl + 1];
-			a[0] = X.t();
+			field<mat> a(nl+1);
+			field<mat> sign(nl);
 
-			for (int i = 1; i <= nl + 1; i++)
+			a(0) = X.t();
+
+			for (int i = 0; i < nl-1; i++)
 			{
-				a[i] = sigmoid(Theta[i] * a[i - 1]);
+				cout << "forward " << i << endl;
+				a(i + 1) = sigmoid(trans(Theta(i)) * a(i));
 			}
 
-			for (int i = nl + 1; i > 0; i--)
+
+
+			for (int i = nl ; i > 0; i--)
 			{
-				gradient = logisticGradient2(X, y, a[i]);
-				alpha =  0.01;
-				Theta[i] = Theta[i] - alpha * gradient;
+				cout << "back " << i << endl;
+
+				if ( i == nl ) {sign(i) = trans(a(i+1)) - y;}
+				else
+				{
+					sign(i) =   Theta(i)*sign(i + 1);
+				}
+				gradient = 2 * a(i - 1) * sign(i) / m;
+				// cout << "TS " << Theta(i).n_elem << endl;
+				Theta(i) = Theta(i) - 0.01 * gradient;
+
 			}
 		}
 	}

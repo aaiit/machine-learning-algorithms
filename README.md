@@ -43,11 +43,11 @@ As of today, the following algorithms have been implemented:
 
 <!--
 ## [Report](https://docs.google.com/document/d/1tDZneH6ZPYIAbiMrY0CzOF6ZCR4k3EEQJaOPl8QeyXo/edit?usp=sharing)
-## References
 1. https://towardsdatascience.com/10-gradient-descent-optimisation-algorithms-86989510b5e9
 2. https://koriavinash1.github.io/ai/optimization/svm/Unconstrained-Optimization/
 3. Calcul Hissien for logistic cost :https://stats.stackexchange.com/questions/68391/hessian-of-logistic-function
 3. Quasi Neuwton : http://thatdatatho.com/2019/08/07/newtons-method-bfgs-linear-regression/
 4. wolfe rule : http://thatdatatho.com/2019/07/01/introduction-gradient-descent-line-search/
-
 -->
+## References
+1. [Principles of training multi-layer neural network](http://home.agh.edu.pl/~vlsi/AI/backp_t_en/backprop.html)
